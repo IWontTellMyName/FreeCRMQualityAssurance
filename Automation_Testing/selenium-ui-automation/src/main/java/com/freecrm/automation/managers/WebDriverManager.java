@@ -10,7 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 public class WebDriverManager {
-    private WebDriver driver;
+    private static WebDriver driver;
     private static DriverType driverType;
 
     public WebDriverManager() {
