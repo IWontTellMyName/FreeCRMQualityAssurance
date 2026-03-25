@@ -13,34 +13,41 @@ public class WebDriverManager {
     private static WebDriver driver;
     private static DriverType driverType;
 
+
     public WebDriverManager() {
         driverType = ConfigFileReader.getInstance().getBrowser();
     }
 
     public WebDriver getDriver() {
-        if(driver == null) driver = createDriver();
+        if (driver == null) driver = createDriver();
         return driver;
     }
 
 
     private WebDriver createDriver() {
         switch (driverType) {
-            case FIREFOX : driver = new FirefoxDriver();
+            case FIREFOX:
+                driver = new FirefoxDriver();
                 break;
-            case CHROME :
+            case CHROME:
                 driver = new ChromeDriver();
                 break;
-            case EDGE : driver = new EdgeDriver();
+            case EDGE:
+                driver = new EdgeDriver();
                 break;
         }
 
-        if(ConfigFileReader.getInstance().getBrowserWindowSize()) driver.manage().window().maximize();
+        if (ConfigFileReader.getInstance().getBrowserWindowSize()) driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ConfigFileReader.getInstance().getImplicitlyWait()));
         return driver;
     }
 
     public void closeDriver() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
-
 }
+
+

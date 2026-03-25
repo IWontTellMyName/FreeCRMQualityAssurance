@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-25T10:23:40 IST" name="Default Suite" finished-at="2026-03-25T10:23:40 IST" duration-ms="60">
+  <suite started-at="2026-03-25T22:04:13 IST" name="Default Suite" finished-at="2026-03-25T22:04:13 IST" duration-ms="68">
     <groups>
     </groups>
-    <test started-at="2026-03-25T10:23:40 IST" name="selenium-ui-automation" finished-at="2026-03-25T10:23:40 IST" duration-ms="60">
+    <test started-at="2026-03-25T22:04:13 IST" name="selenium-ui-automation" finished-at="2026-03-25T22:04:13 IST" duration-ms="68">
       <class name="com.freecrm.automation.DemoTest">
-        <test-method signature="Test()[pri:0, instance:com.freecrm.automation.DemoTest@147a5d08]" started-at="2026-03-25T10:23:40 IST" name="Test" finished-at="2026-03-25T10:23:40 IST" duration-ms="9" status="PASS">
+        <test-method signature="Test()[pri:0, instance:com.freecrm.automation.DemoTest@65987993]" started-at="2026-03-25T22:04:13 IST" name="Test" finished-at="2026-03-25T22:04:13 IST" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Test -->

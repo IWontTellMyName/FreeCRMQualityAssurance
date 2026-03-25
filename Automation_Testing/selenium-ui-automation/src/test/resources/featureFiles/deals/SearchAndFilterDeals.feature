@@ -13,7 +13,7 @@ Feature: User wants to view and search deals to quickly find and manage relevant
       | Quantum |
 
   Scenario Outline: Filter Deals by Stage
-    When the user clicks on the show filter button and selects "Stage" from the dropdown
+    When the user clicks on the show filter button and selects Stage from the dropdown
     And the user selects "<stage>" from the Stage options and applies the filter
     Then the user should see a list of Deals that are in the "<stage>" stage
     Examples:
@@ -21,5 +21,8 @@ Feature: User wants to view and search deals to quickly find and manage relevant
       | Qualify  |
 
 
-
+  Scenario: Invalid filter check
+    When the user clicks on the show filter button and selects Title from the dropdown
+    And the user enters "NonExistentTitle" in the Title filter and applies the filter
+    Then the user should see an empty list of Deals, indicating no matches found
 

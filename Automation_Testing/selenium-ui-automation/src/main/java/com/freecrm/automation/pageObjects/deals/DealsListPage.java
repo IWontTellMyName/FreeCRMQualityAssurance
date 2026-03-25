@@ -1,5 +1,6 @@
 package com.freecrm.automation.pageObjects.deals;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,7 +32,7 @@ public class DealsListPage {
     WebElement filterDropdown;
 
     @FindBy(xpath = "//span[text()='Stage']")
-    WebElement SelectStageFilter;
+    WebElement selectStageFilter;
 
     @FindBy(xpath = "//div[text()='Value']")
     WebElement StageFilterValueDropdown;
@@ -48,6 +49,16 @@ public class DealsListPage {
     @FindBy(xpath = "(//a[@class='item active'])[2]")
     WebElement noOfRecords;
 
+    @FindBy(xpath = "//i[@class='ban small icon']")
+    WebElement clearFilterButton;
+
+    @FindBy(xpath = "//span[text()='Title']")
+    WebElement selectTitleFilter;
+
+    @FindBy(xpath = "//input[@placeholder='Value']")
+    WebElement valuePlaceholder;
+
+
     public DealsListPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -59,10 +70,12 @@ public class DealsListPage {
 
     public void performGlobalSearch(String searchTerm) {
         searchBox.sendKeys(searchTerm, Keys.ENTER);
+        System.out.println("Search term entered: " + searchTerm);
+
     }
 
-    public void validateDealsRecord() {
-        dealsRecord.isDisplayed();
+    public boolean validateDealsRecord() {
+        return dealsRecord.isDisplayed();
     }
 
     public void clickDealsRecord(){
@@ -72,7 +85,6 @@ public class DealsListPage {
 
     public boolean validateGlobalSearch(String searchTerm)
     {
-        driver.navigate().back();
        return dealsRecordsList.stream()
                .map(WebElement::getText)
                .allMatch(record -> record.toLowerCase().contains(searchTerm.toLowerCase()));
@@ -90,10 +102,11 @@ public class DealsListPage {
     }
 
     public void selectStageFilter() {
-        SelectStageFilter.click();
+        selectStageFilter.click();
     }
 
-    public void selectQualifyStage() {
+    public void selectQualifyStage(String stage) {
+        StageFilterValueDropdown.click();
         selectQualifyStage.click();
     }
 
@@ -101,8 +114,31 @@ public class DealsListPage {
         applyFilterButton.click();
     }
 
-    public boolean validateFilterResults(){
-        return qualifyStageRecordsList.size() == Integer.parseInt(noOfRecords.getText());
+    public int noOfRecords() {
+        String recordsText =noOfRecords.getText();
+        return Integer.parseInt(recordsText);
     }
+
+    public boolean validateFilterResults(){
+        return qualifyStageRecordsList.size() == noOfRecords();
+    }
+
+    public void clickClearFilterButton() {
+        clearFilterButton.click();
+    }
+
+    public void selectTitleFilter() {
+        selectTitleFilter.click();
+    }
+
+    public void enterTitle(String title) {
+        valuePlaceholder.sendKeys(title);
+    }
+
+    public boolean validateNoRecords()
+    {
+        return driver.findElement(By.xpath("//p[text()='No records found']")).isDisplayed();
+    }
+
 
 }
