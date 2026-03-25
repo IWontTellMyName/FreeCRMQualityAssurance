@@ -24,9 +24,11 @@ public class Steps {
         webDriverManager = new WebDriverManager();
         driver = webDriverManager.getDriver();
         driver.get(configFileReader.getApplicationUrl());
+
         pageObjectManager = new PageObjectManager(driver);
         homePage = pageObjectManager.getHomePage();
         loginPage = pageObjectManager.getLoginPage();
+
         homePage.clickLogInButton();
         loginPage.login(configFileReader.getEmail(), configFileReader.getPassword());
     }
