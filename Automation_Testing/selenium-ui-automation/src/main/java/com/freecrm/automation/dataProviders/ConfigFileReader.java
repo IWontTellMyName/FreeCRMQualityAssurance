@@ -71,4 +71,10 @@ public class ConfigFileReader {
         if(windowSize != null) return Boolean.valueOf(windowSize);
         return true;
     }
+
+    public String getExcelFilePath() {
+        String excelPath = properties.getProperty("excelFilePath");
+        if(excelPath != null) return excelPath;
+        else throw new RuntimeException("excelPath not specified in the Configuration.properties file.");
+    }
 }

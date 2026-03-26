@@ -1,4 +1,4 @@
-@deals1
+@deals
 Feature: User wants to delete a deal to remove outdated or irrelevant entries from the system
 
   Scenario Outline: To validate that a user can delete a deal successfully
