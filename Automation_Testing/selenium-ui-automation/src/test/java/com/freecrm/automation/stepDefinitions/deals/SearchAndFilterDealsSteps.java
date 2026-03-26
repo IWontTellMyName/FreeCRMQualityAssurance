@@ -63,7 +63,7 @@ public class SearchAndFilterDealsSteps {
         dealsListPage.clickApplyFilterButton();
     }
     @Then("the user should see a list of Deals that are in the {string} stage")
-    public void the_user_should_see_a_list_of_deals_that_are_in_the_stage(String string) {
+    public void the_user_should_see_a_list_of_deals_that_are_in_the_stage(String string) throws InterruptedException {
         Assert.assertTrue(dealsListPage.validateFilterResults());
     }
 

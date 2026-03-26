@@ -64,6 +64,8 @@ public class DealsListPage {
     @FindBy(xpath = "//td[2]/a")
     List<WebElement> dealsTitlesList;
 
+    @FindBy(xpath = "//button[text()='Create']")
+    WebElement createButton;
 
     public DealsListPage(WebDriver driver) {
         this.driver = driver;
@@ -86,6 +88,7 @@ public class DealsListPage {
 
     public void clickDealsRecord(){
         driver.navigate().refresh();
+
         dealsRecord.click();
     }
 
@@ -125,8 +128,12 @@ public class DealsListPage {
         return Integer.parseInt(recordsText);
     }
 
-    public boolean validateFilterResults(){
-        return qualifyStageRecordsList.size() == noOfRecords();
+    private final By qualifyRecords = By.xpath("//td[7]");
+
+    public boolean validateFilterResults() {
+        List<WebElement> records = driver.findElements(qualifyRecords);
+        return records.stream()
+                .allMatch(record -> record.getText().trim().equalsIgnoreCase("Qualify"));
     }
 
     public void clickClearFilterButton() {
@@ -159,29 +166,34 @@ public class DealsListPage {
         deleteBtn.click();
     }
 
-    public void cancelDeletion() {
+    public void cancelDeletion() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         WebElement cancelBtn = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//div[contains(@class,'modal') and contains(@class,'visible')]//button[normalize-space()='Cancel']")
         ));
-
+        Thread.sleep(1000);
         cancelBtn.click();
     }
 
-    public void confirmDeletion() {
+    public void confirmDeletion() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         WebElement deleteBtn = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//div[contains(@class,'modal') and contains(@class,'visible')]//button[contains(@class,'red')]")
         ));
-
+        Thread.sleep(1000);;
         deleteBtn.click();
     }
 
-    public boolean validateDealPresence(String dealTitle) {
+    public boolean validateDealPresence(String dealTitle) throws InterruptedException {
+        Thread.sleep(2000);
         return dealsTitlesList.stream()
                 .anyMatch(element -> element.getText().trim().equalsIgnoreCase(dealTitle));
+    }
+
+    public void clickCreateButton() {
+        createButton.click();
     }
 
 
