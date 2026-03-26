@@ -1,5 +1,6 @@
 package com.freecrm.automation.stepDefinitions.deals;
 
+import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.DashboardPage;
 import com.freecrm.automation.pageObjects.deals.DealsListPage;
@@ -12,14 +13,16 @@ public class SearchAndFilterDealsSteps {
     private WebDriverManager  webDriverManager;
     private DealsListPage dealsListPage;
     private WebDriver driver;
+    private PageObjectManager pageObjectManager;
     @When("the user clicks on the Deals tab in the main navigation menu")
     public void the_user_clicks_on_the_deals_tab_in_the_main_navigation_menu()
     {
         webDriverManager = new WebDriverManager();
         driver = webDriverManager.getDriver();
-        DashboardPage dashboardPage = new DashboardPage(driver);
+        pageObjectManager = new PageObjectManager(driver);
+        DashboardPage dashboardPage = pageObjectManager.getDashboardPage();
         dashboardPage.clickDealsIcon();
-        dealsListPage = new DealsListPage(driver);
+        dealsListPage =pageObjectManager.getDealsListPage();
     }
     @Then("the user should be on the Deals page")
     public void the_user_should_be_on_the_deals_page() {
@@ -48,7 +51,8 @@ public class SearchAndFilterDealsSteps {
     public void the_user_clicks_on_the_show_filter_button_and_selects_from_the_dropdown() {
         webDriverManager= new WebDriverManager();
         driver = webDriverManager.getDriver();
-        dealsListPage = new DealsListPage(driver);
+        pageObjectManager = new PageObjectManager(driver);
+        dealsListPage = pageObjectManager.getDealsListPage();
         dealsListPage.clickShowFiltersButton();
         dealsListPage.displayFilterDropdown();
         dealsListPage.selectStageFilter();
@@ -67,7 +71,8 @@ public class SearchAndFilterDealsSteps {
     public void the_user_clicks_on_the_show_filter_button_and_selects_title_from_the_dropdown() {
         webDriverManager= new WebDriverManager();
         driver = webDriverManager.getDriver();
-        dealsListPage = new DealsListPage(driver);
+        pageObjectManager = new PageObjectManager(driver);
+        dealsListPage = pageObjectManager.getDealsListPage();
         dealsListPage.clickClearFilterButton();
         dealsListPage.clickShowFiltersButton();
         dealsListPage.displayFilterDropdown();
