@@ -1,12 +1,17 @@
 package com.freecrm.automation.pageObjects.deals;
 
+import com.freecrm.automation.dataProviders.ConfigFileReader;
+import com.freecrm.automation.dataProviders.ExcelReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
+import java.util.Map;
 
 public class DealsCreatePage {
     WebDriver driver;
@@ -16,6 +21,9 @@ public class DealsCreatePage {
 
     @FindBy(xpath = "//input[@name='amount']")
     WebElement txt_amount;
+
+    @FindBy(xpath = "//input[@class='calendarField']")
+    WebElement txt_calendar;
 
     @FindBy(xpath = "//span[@class='react-datepicker__navigation-icon react-datepicker__navigation-icon--next']")
     WebElement btn_next;
@@ -69,6 +77,10 @@ public class DealsCreatePage {
         txt_probability.sendKeys(probability);
     }
 
+    public void enter_calendar(String calendar) {
+        txt_calendar.sendKeys(calendar, Keys.ENTER);
+    }
+
     public void click_next() {
         btn_next.click();
     }
@@ -100,20 +112,28 @@ public class DealsCreatePage {
     private void SelectOption(String option) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         By locator = By.xpath(String.format(SELECT_OPTION, option));
-        WebElement statusOption = driver.findElement(locator);
-        wait.until(ExpectedConditions.elementToBeClickable(statusOption));
-        statusOption.click();
+        WebElement selectOption = driver.findElement(locator);
+        wait.until(ExpectedConditions.elementToBeClickable(selectOption));
+        selectOption.click();
     }
 
-    public void enterCredentials() throws InterruptedException {
-        enter_title("Test Deal");
-        enter_amount("1000");
-//        click_next();
-//        click_chooseFriday();
-        select_stage("Qualify");
-        select_status("Active");
-        select_assigned_to("Sudeshna Pathak");
-        enter_probability("50");
+    public void enterCredentials(Integer rowNum, String sheetName) throws Exception {
+        ExcelReader excelReader = new ExcelReader();
+        List<Map<String, String>> dealsInfo = excelReader.getData(
+                ConfigFileReader.getInstance().getExcelFilePath(), sheetName
+        );
+
+
+        int listIndex = rowNum - 2;
+        Map<String, String> deal = dealsInfo.get(listIndex);
+
+        enter_title(deal.get("Title"));
+        enter_amount(deal.get("Amount"));
+        select_stage(deal.get("Stage"));
+        select_status(deal.get("Status"));
+        select_assigned_to(deal.get("AssignedTo"));
+        enter_probability(deal.get("Probablity"));
+        enter_calendar(deal.get("Date"));
     }
 
     public boolean validate_deal_creation() throws InterruptedException {
