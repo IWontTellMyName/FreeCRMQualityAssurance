@@ -1,12 +1,12 @@
 package com.freecrm.automation.pageObjects.deals;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class DealsListPage {
@@ -57,6 +57,12 @@ public class DealsListPage {
 
     @FindBy(xpath = "//input[@placeholder='Value']")
     WebElement valuePlaceholder;
+
+//    @FindBy(xpath = "//td/a[text()='New Deal']/ancestor::tr//i[contains(@class,'trash')]")
+//    WebElement trashButton;
+
+    @FindBy(xpath = "//td[2]/a")
+    List<WebElement> dealsTitlesList;
 
 
     public DealsListPage(WebDriver driver) {
@@ -138,6 +144,44 @@ public class DealsListPage {
     public boolean validateNoRecords()
     {
         return driver.findElement(By.xpath("//p[text()='No records found']")).isDisplayed();
+    }
+
+    private static final String DELETE_BTN_XPATH =
+            "//td/a[text()='%s']/ancestor::tr//i[contains(@class,'trash')]";
+
+    public void clickTrashButton(String dealTitle) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        By locator = By.xpath(String.format(DELETE_BTN_XPATH, dealTitle));
+
+        WebElement deleteBtn = driver.findElement(locator);
+        wait.until(ExpectedConditions.elementToBeClickable(deleteBtn));
+        deleteBtn.click();
+    }
+
+    public void cancelDeletion() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement cancelBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(@class,'modal') and contains(@class,'visible')]//button[normalize-space()='Cancel']")
+        ));
+
+        cancelBtn.click();
+    }
+
+    public void confirmDeletion() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement deleteBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(@class,'modal') and contains(@class,'visible')]//button[contains(@class,'red')]")
+        ));
+
+        deleteBtn.click();
+    }
+
+    public boolean validateDealPresence(String dealTitle) {
+        return dealsTitlesList.stream()
+                .anyMatch(element -> element.getText().trim().equalsIgnoreCase(dealTitle));
     }
 
 
