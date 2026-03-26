@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(features = {"src/test/resources/featureFiles/deals"},
         glue = {"com.freecrm.automation.stepDefinitions.deals", "com.freecrm.automation.hooks"},
-        tags = "@deals",
+        tags = "@deals1",
         dryRun = false)
 public class TestRunnerDeals extends AbstractTestNGCucumberTests {
 }
