@@ -1,19 +1,15 @@
 package com.freecrm.automation.stepDefinitions.deals;
 
-import com.freecrm.automation.dataProviders.ExcelReader;
 import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.deals.DealsCreatePage;
 import com.freecrm.automation.pageObjects.deals.DealsListPage;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-
-import java.io.IOException;
 
 public class CreateDealSteps {
 

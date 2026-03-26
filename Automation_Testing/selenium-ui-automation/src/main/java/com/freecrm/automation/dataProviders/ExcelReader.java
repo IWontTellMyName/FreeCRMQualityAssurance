@@ -1,5 +1,5 @@
 package com.freecrm.automation.dataProviders;
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.File;
@@ -12,7 +12,7 @@ import java.util.Map;
 public class ExcelReader {
     public static int totalRow;
 
-    public List<Map<String, String>> getData(String excelFilePath, String sheetName) throws InvalidFormatException, IOException {
+    public List<Map<String, String>> getData(String excelFilePath, String sheetName) throws IOException {
         Workbook workbook = WorkbookFactory.create(new File(excelFilePath));
         Sheet sheet = workbook.getSheet(sheetName);
         workbook.close();
