@@ -8,6 +8,7 @@ import com.freecrm.automation.pageObjects.HomePage;
 import com.freecrm.automation.pageObjects.LoginPage;
 import io.cucumber.java.en.Given;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 public class Steps {
     HomePage homePage;
