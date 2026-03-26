@@ -5,6 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(features = {"src/test/resources/featureFiles/contacts"},
         glue = {"com.freecrm.automation.stepDefinitions.contacts"},
+        tags = "@TC_Contacts_30",
         dryRun = false)
 public class TestRunnerContacts extends AbstractTestNGCucumberTests {
 }
