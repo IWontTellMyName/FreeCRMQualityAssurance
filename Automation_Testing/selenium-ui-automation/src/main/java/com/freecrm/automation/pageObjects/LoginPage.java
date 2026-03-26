@@ -18,7 +18,11 @@ public class LoginPage {
     }
 
     public void login(String email, String password) {
-        txt_email.sendKeys(email, Keys.TAB, password, Keys.ENTER);
+        try {
+            txt_email.sendKeys(email, Keys.TAB, password, Keys.ENTER);
+        } catch (Exception e) {
+            System.out.println("Already logged in");
+        }
     }
 
 }

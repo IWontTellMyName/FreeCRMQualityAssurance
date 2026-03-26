@@ -13,7 +13,6 @@ public class WebDriverManager {
     private static WebDriver driver;
     private static DriverType driverType;
 
-
     public WebDriverManager() {
         driverType = ConfigFileReader.getInstance().getBrowser();
     }
@@ -43,10 +42,11 @@ public class WebDriverManager {
     }
 
     public void closeDriver() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
-        }
+//        if (driver != null) {
+//            driver.quit();
+//            driver = null;
+//        }
+        driver.close();
     }
 }
 

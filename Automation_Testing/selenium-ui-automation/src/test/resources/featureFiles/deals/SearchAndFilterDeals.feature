@@ -1,3 +1,4 @@
+@deals
 Feature: User wants to view and search deals to quickly find and manage relevant opportunities
 
   Scenario Outline: To validate that Global Search returns the correct deal by deal name
