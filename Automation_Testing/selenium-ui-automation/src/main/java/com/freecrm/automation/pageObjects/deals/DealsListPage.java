@@ -67,6 +67,7 @@ public class DealsListPage {
     @FindBy(xpath = "//button[text()='Create']")
     WebElement createButton;
 
+
     public DealsListPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);

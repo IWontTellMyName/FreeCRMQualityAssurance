@@ -59,6 +59,15 @@ public class DealsCreatePage {
     @FindBy(xpath = "//span[@class='inline-error-msg' and text()='The field Title is required.']")
     WebElement titleValidation;
 
+    @FindBy(xpath="//i[@class='unlock icon']")
+    WebElement unlockIcon;
+
+    @FindBy(xpath = "//div[text()='Select users allowed access.']")
+    WebElement usersAllowedAccessDropDown;
+
+    @FindBy(xpath = "//i[@class='settings icon']")
+    WebElement settingsButton;
+
 //    @FindBy(xpath = "//p[text()='Probability must be between 0 and 100']")
 //    WebElement probabilityValidation;
 
@@ -160,6 +169,33 @@ public class DealsCreatePage {
                 )
         );
         return errorMsg.isDisplayed();
+    }
+
+    public void clickUnlockIcon() {
+        unlockIcon.click();
+    }
+
+    public void selectUsersAllowedAccess(String RowNumber) throws Exception {
+        String sheetName = "Credentials";
+
+        ExcelReader excelReader = new ExcelReader();
+        List<Map<String, String>> loginInfo = excelReader.getData(
+                ConfigFileReader.getInstance().getExcelFilePath(), sheetName
+        );
+
+        int listIndex = Integer.parseInt(RowNumber) - 2;
+        Map<String, String> credentials = loginInfo.get(listIndex);
+
+        String user =  credentials.get("userName");
+        usersAllowedAccessDropDown.click();
+        SelectOption(user);
+    }
+
+    public void logout() throws InterruptedException {
+        settingsButton.click();
+        Thread.sleep(2000);
+        SelectOption("Log Out");
+
     }
 
 }

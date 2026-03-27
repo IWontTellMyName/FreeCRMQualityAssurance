@@ -1,16 +1,16 @@
-@deals1
+@deals
 Feature: User, wants to create a deal to track potential sales opportunities
 
   Scenario Outline: User creates a deal with valid information
-    Given User should be logged in
+    Given User should be logged in with "<LoginRow>"
     And User is on the Deals page
     When User clicks on the Create Deal button
-    And User enters "<RowNumber>" and "<SheetName>" to fill in valid information
+    And User enters "<DealRow>" and "<SheetName>" to fill in valid information
     And clicks the Save button
     Then the deal should be created successfully
     Examples:
-      | RowNumber | SheetName |
-      | 2         | Deals     |
+      | LoginRow | DealRow | SheetName |
+      | 2       | 2         | Deals     |
 
   Scenario: User tries to create a deal with missing required fields or invalid inputs
     Given the user is the Deals page

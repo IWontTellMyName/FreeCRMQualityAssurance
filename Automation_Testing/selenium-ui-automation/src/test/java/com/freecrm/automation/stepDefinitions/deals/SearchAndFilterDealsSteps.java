@@ -73,7 +73,13 @@ public class SearchAndFilterDealsSteps {
         driver = webDriverManager.getDriver();
         pageObjectManager = new PageObjectManager(driver);
         dealsListPage = pageObjectManager.getDealsListPage();
-        dealsListPage.clickClearFilterButton();
+        try {
+            dealsListPage.clickClearFilterButton();
+        }
+        catch (Exception e)
+        {
+            System.out.println("No filters to clear");
+        }
         dealsListPage.clickShowFiltersButton();
         dealsListPage.displayFilterDropdown();
         dealsListPage.selectTitleFilter();
