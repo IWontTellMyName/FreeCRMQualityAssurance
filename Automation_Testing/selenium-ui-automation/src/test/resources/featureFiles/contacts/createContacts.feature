@@ -1,6 +1,6 @@
 Feature: Create Contact Functionality
 
-  @TC_Contacts_08
+  @TC_Contacts
   Scenario: TC_Contacts_08 - Create a new contact with valid data
 
     Given User should be logged in

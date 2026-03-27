@@ -1,6 +1,6 @@
 Feature: Search Contact Functionality
 
-  @TC_Contacts_23
+  @TC_Contacts
   Scenario: TC_Contacts_23 - Search contact by name
 
     Given User should be logged in

@@ -1,6 +1,6 @@
 Feature: Delete Contact Functionality
 
-  @TC_Contacts_20
+  @TC_Contacts
   Scenario: TC_Contacts_20 - Delete a contact successfully
 
     Given User should be logged in

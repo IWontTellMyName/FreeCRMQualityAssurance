@@ -159,28 +159,72 @@ public class ContactPage {
         return wait.until(ExpectedConditions.visibilityOf(lastNameError)).isDisplayed();
     }
 
+    //filter
+    @FindBy(xpath = "//button[contains(text(),'Show Filters')]")
+    WebElement showFiltersBtn;
 
-    //edit contact validate
-    public void clickEditContact(String name) {
-        String xpath = "//a[contains(text(),'" + name + "')]/ancestor::tr//i[@class='edit icon']/ancestor::button";
-        driver.findElement(By.xpath(xpath)).click();
+    public void clickShowFilters() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(showFiltersBtn)).click();
     }
-    public void clearLastName() {
+
+    @FindBy(xpath = "//div[@name='name' and contains(@class,'dropdown')]")
+    WebElement searchDropdown;
+
+    public void clickSearchDropdown() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(searchDropdown)).click();
+    }
+
+    public void selectFilterField(String field) {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        WebElement field = wait.until(
-                ExpectedConditions.elementToBeClickable(lastName)
+        String optionXpath = "//span[text()='" + field + "']";
+
+        WebElement option = wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath(optionXpath))
         );
 
-        // Click to focus
-        field.click();
+        option.click();
+    }
 
-        // Clear properly
-        field.sendKeys(Keys.CONTROL + "a");
-        field.sendKeys(Keys.DELETE);
+    @FindBy(xpath = "//input[@name='value']")
+    WebElement filterValue;
 
+    public void enterFilterValue(String value) {
 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement input = wait.until(
+                ExpectedConditions.visibilityOf(filterValue)
+        );
+
+        input.clear();
+        input.sendKeys(value);
+    }
+
+    @FindBy(xpath = "//button[contains(.,'Filter')]")
+    WebElement filterButton;
+
+    public void clickFilterButton() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait.until(ExpectedConditions.elementToBeClickable(filterButton)).click();
+    }
+
+    public boolean isFilteredResultDisplayed(String name) {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        String xpath = "//table//tbody//a[contains(text(),'" + name + "')]";
+
+        WebElement result = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))
+        );
+
+        return result.isDisplayed();
     }
 }
 

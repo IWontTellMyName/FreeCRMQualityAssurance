@@ -25,9 +25,9 @@ public class validateMandatoryFieldStep {
         Assert.assertTrue(result, "First Name error not displayed");
     }
 
-//    @Then("error message for last name should be displayed")
-//    public void error_message_for_last_name_should_be_displayed() {
-//        boolean result = contactPage.isLastNameErrorDisplayed();
-//        Assert.assertTrue(result, "Last Name error not displayed");
-//    }
+    @Then("error message for last name should be displayed")
+    public void error_message_for_last_name_should_be_displayed() {
+        boolean result = contactPage.isLastNameErrorDisplayed();
+        Assert.assertTrue(result, "Last Name error not displayed");
+    }
 }
