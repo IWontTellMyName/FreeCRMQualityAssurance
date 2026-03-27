@@ -1,0 +1,1051 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>FreeCRM Automation Testing</title>
+<link rel="apple-touch-icon" href="spark/logo.png">
+<link rel="shortcut icon" href="spark/logo.png">
+<link rel="stylesheet" href="spark/spark-style.css">
+<link rel="stylesheet" href="spark/font-awesome.min.css">
+<script src="spark/jsontree.js"></script>
+<style type="text/css"></style></head><body class="spa bdd-report dark">
+  <div class="app">
+    <div class="layout">
+<div class="header navbar">
+<div class="vheader">
+<div class="nav-logo">
+<a href="#">
+<div class="logo" style="background-image: url('spark/logo.png')"></div>
+</a>
+</div>
+<ul class="nav-left">
+<li class="search-box">
+<a class="search-toggle" href="#">
+<i class="search-icon fa fa-search"></i>
+<i class="search-icon-close fa fa-close"></i>
+</a>
+</li>
+<li class="search-input"><input id="search-tests" class="form-control" type="text" placeholder="Search..."></li>
+</ul>
+<ul class="nav-right">
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">Deals Module Test Report</span></a>
+</li>
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">Mar 27, 2026 09:48:50 pm</span></a>
+</li>
+</ul>
+</div>
+</div><div class="side-nav">
+<div class="side-nav-inner">
+<ul class="side-nav-menu">
+<li class="nav-item dropdown" onclick="toggleView('dashboard-view')">
+<a id="nav-dashboard" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bar-chart"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('test-view')">
+<a id="nav-test" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-list"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('category-view')">
+<a id="nav-category" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-tag"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('author-view')">
+<a id="nav-author" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-user"></i></span>
+</a>
+</li>
+</ul>
+</div>
+</div>      <div class="vcontainer">
+        <div class="main-content">
+<div class="container-fluid p-4 view dashboard-view">
+<div class="row">
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Started</p>
+<h3>Mar 27, 2026 09:48:50 pm</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Ended</p>
+<h3>Mar 27, 2026 09:51:27 pm</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-pass">Features Passed</p>
+<h3>4</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-fail">Features Failed</p>
+<h3>0</h3>
+</div></div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Features</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='parent-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='100%'>
+<b>4</b> features passed
+</small>
+</div>
+<div>
+<small data-tooltip='0%'><b>0</b> features failed,
+<b>0</b> skipped, <b data-tooltip='0%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Scenarios</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='child-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='100%'><b>7</b> scenarios passed</small></div>
+<div>
+<small data-tooltip='0%'><b>0</b> scenarios failed,
+<b>0</b> skipped, <b data-tooltip='%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Steps</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='grandchild-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='100%'><b>59</b> steps passed</small></div>
+<div>
+<small data-tooltip='0%'><b>0</b> steps failed,
+<b>0</b> skipped, <b data-tooltip='%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><div class="col-md-12">
+<div class="card"><div class="card-header"><p>Timeline</p></div>
+<div class="card-body pt-0"><div>
+<canvas id="timeline" height="120"></canvas>
+</div></div>
+</div>
+</div></div>
+<script>
+var timeline = {
+"User, wants to create a deal to track potential sales opportunities":49.873,"Deal Access Control for Private Deals":68.4,"User wants to delete a deal to remove outdated or irrelevant entries from the system":14.566,"User wants to view and search deals to quickly find and manage relevant opportunities":23.491
+};
+</script>
+<div class="row">
+<div class="col-lg-6 col-md-12 author-container">
+<div class="card">
+<div class="card-header"><p>Author</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead>
+<tbody>
+<tr>
+<td>SudeshnaPathak</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 category-container">
+<div class="card">
+<div class="card-header"><p>Tags</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
+<tr>
+<td>@deals</td>
+<td>7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 sysenv-container">
+<div class="card">
+<div class="card-header"><p>System/Environment</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Value</th></tr></thead>
+<tbody>
+<tr>
+<td>Environment</td>
+<td>QA</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>Windows 11</td>
+</tr>
+<tr>
+<td>Java Version</td>
+<td>21</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+var statusGroup = {
+parentCount: 5,
+passParent: 4,
+failParent: 0,
+warningParent: 0,
+skipParent: 0,
+childCount: 5,
+passChild: 7,
+failChild: 0,
+warningChild: 0,
+skipChild: 0,
+infoChild: 0,
+grandChildCount: 5,
+passGrandChild: 59,
+failGrandChild: 0,
+warningGrandChild: 0,
+skipGrandChild: 0,
+infoGrandChild: 0,
+eventsCount: 5,
+};
+</script><div class="test-wrapper row view test-view">
+  <div class="test-list">
+    <div class="test-list-tools">
+<ul class="tools pull-left">
+<li><a href="#"><span class="font-size-14">Tests</span></a></li>
+</ul>
+<ul class="tools text-right">
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
+<ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<div class="dropdown-divider"></div>
+<a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
+</ul>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+<ul id="author-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" href="#">SudeshnaPathak</a>
+</ul>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
+<ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" href="#">@deals</a>
+</ul>
+</li>
+</ul>
+</div>    <div class="test-list-wrapper scrollable">
+      <ul class="test-list-item">
+        <li class="test-item"  status="pass" test-id="1"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">User, wants to create a deal to track potential sales opportunities</p>
+            <p class="text-sm">
+              <span>9:48:51 pm</span> / <span>00:00:49:873</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">User, wants to create a deal to track potential sales opportunities</h5>
+<span class='badge badge-success'>03.27.2026 9:48:51 pm</span>
+<span class='badge badge-danger'>03.27.2026 9:49:41 pm</span>
+<span class='badge badge-default'>00:00:49:873</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-10 m-l-5"></div>
+</div>
+</div>
+<div class="accordion mt-4">
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>User creates a deal with valid information</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="3"><span class="badge log pass-bg mr-2">Pass</span>User creates a deal with valid information</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User should be logged in with "2"</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User is on the Deals page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User clicks on the Create Deal button</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User enters "2" and "Deals" to fill in valid information</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And clicks the Save button</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then the deal should be created successfully</span>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="10"><span class="badge log pass-bg mr-2">Pass</span>User tries to create a deal with missing required fields or invalid inputs</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.CreateDealSteps.the_user_is_the_deals_page()">
+                <span>Given the user is the Deals page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.CreateDealSteps.user_clicks_on_the_create_deal_button()">
+                <span>When User clicks on the Create Deal button</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.CreateDealSteps.the_user_leaves_one_or_more_required_fields_empty()">
+                <span>And the user leaves one or more required fields empty</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.CreateDealSteps.clicks_the_save_button()">
+                <span>And clicks the Save button</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.CreateDealSteps.the_deal_should_not_be_created()">
+                <span>Then the deal should not be created successfully</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.CreateDealSteps.the_user_should_see_an_error_message_indicating_which_fields_are_required()">
+                <span>And the user should see an error message indicating which fields are required</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.CreateDealSteps.the_user_fills_in_the_missing_required_fields_with_valid_data()">
+                <span>When the user fills in the missing required fields with valid data</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.CreateDealSteps.the_user_enters_invalid_data_in_one_or_more_fields()">
+                <span>And the user enters invalid data in one or more fields</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.CreateDealSteps.clicks_the_save_button()">
+                <span>And clicks the Save button</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.CreateDealSteps.the_deal_should_not_be_created()">
+                <span>Then the deal should not be created successfully</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.CreateDealSteps.the_user_should_see_an_error_message_indicating_which_fields_contain_invalid_data()">
+                <span>And the user should see an error message indicating which fields contain invalid data</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="22"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Deal Access Control for Private Deals</p>
+            <p class="text-sm">
+              <span>9:49:41 pm</span> / <span>00:01:08:400</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Deal Access Control for Private Deals</h5>
+<span class='badge badge-success'>03.27.2026 9:49:41 pm</span>
+<span class='badge badge-danger'>03.27.2026 9:50:49 pm</span>
+<span class='badge badge-default'>00:01:08:400</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=22</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-10 m-l-5"></div>
+</div>
+</div>
+<div class="accordion mt-4">
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="23"><span class="badge log pass-bg mr-2">Pass</span>Verify private deal visibility for allowed and restricted users</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="24"><span class="badge log pass-bg mr-2">Pass</span>Verify private deal visibility for allowed and restricted users</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User should be logged in with "2"</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User is on the Deals page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User clicks on the Create Deal button</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User enters "3" and "Deals" to fill in valid information</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And sets Access to Private</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And adds user "5" in Select users allowed access</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And clicks the Save button</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then the deal should be created successfully</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User logs out</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User should be logged in with "5"</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User is on the Deals page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When the user clicks on the show filter button and selects Title from the dropdown</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And the user enters "Access Control Test Deal" in the Title filter and applies the filter</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then the "Access Control Test Deal" should be visible in the results</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User logs out</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User should be logged in with "4"</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User is on the Deals page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When the user clicks on the show filter button and selects Title from the dropdown</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And the user enters "Access Control Test Deal" in the Title filter and applies the filter</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then the "Access Control Test Deal" should not be visible in the results</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User logs out</span>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="46"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">User wants to delete a deal to remove outdated or irrelevant entries from the system</p>
+            <p class="text-sm">
+              <span>9:50:49 pm</span> / <span>00:00:14:566</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">User wants to delete a deal to remove outdated or irrelevant entries from the system</h5>
+<span class='badge badge-success'>03.27.2026 9:50:49 pm</span>
+<span class='badge badge-danger'>03.27.2026 9:51:04 pm</span>
+<span class='badge badge-default'>00:00:14:566</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=46</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-10 m-l-5"></div>
+</div>
+</div>
+<div class="accordion mt-4">
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="47"><span class="badge log pass-bg mr-2">Pass</span>To validate that a user can delete a deal successfully</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="48"><span class="badge log pass-bg mr-2">Pass</span>To validate that a user can delete a deal successfully</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User should be logged in with "2"</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User is on the Deals page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When the user selects a "Test Deal" deal from the list of deals and clicks on the delete icon</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And cancels the delete action in the confirmation dialog</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then the "Test Deal" should still be present in the list of deals</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When the user selects the same "Test Deal" deal again and clicks on the delete icon</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And confirms the delete action in the confirmation dialog</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then the "Test Deal" should be removed from the list of deals</span>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="57"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">User wants to view and search deals to quickly find and manage relevant opportunities</p>
+            <p class="text-sm">
+              <span>9:51:04 pm</span> / <span>00:00:23:491</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">User wants to view and search deals to quickly find and manage relevant opportunities</h5>
+<span class='badge badge-success'>03.27.2026 9:51:04 pm</span>
+<span class='badge badge-danger'>03.27.2026 9:51:27 pm</span>
+<span class='badge badge-default'>00:00:23:491</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=57</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-10 m-l-5"></div>
+</div>
+</div>
+<div class="accordion mt-4">
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="58"><span class="badge log pass-bg mr-2">Pass</span>To validate that Global Search returns the correct deal by deal name</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="59"><span class="badge log pass-bg mr-2">Pass</span>To validate that Global Search returns the correct deal by deal name</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User should be logged in with "2"</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When the user clicks on the Deals tab in the main navigation menu</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then the user should be on the Deals page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When the user enters "Quantum" in the global search box and clicks the search icon</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then the user should see a list of Records matching the search term</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When the user clicks on Deals in the Records</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then the user should see a list of Deals matching the "Quantum"</span>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="67"><span class="badge log pass-bg mr-2">Pass</span>To validate that filters (Stage, Status, Close Date, Source, Tags etc.) return correctly filtered deals</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="68"><span class="badge log pass-bg mr-2">Pass</span>To validate that filters (Stage, Status, Close Date, Source, Tags etc.) return correctly filtered deals</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>When the user clicks on the show filter button and selects Stage from the dropdown</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And the user selects "Qualify" from the Stage options and applies the filter</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then the user should see a list of Deals that are in the "Qualify" stage</span>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="72"><span class="badge log pass-bg mr-2">Pass</span>To validate that incorrect filters return empty lists.</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.SearchAndFilterDealsSteps.the_user_clicks_on_the_show_filter_button_and_selects_title_from_the_dropdown()">
+                <span>When the user clicks on the show filter button and selects Title from the dropdown</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.SearchAndFilterDealsSteps.the_user_enters_in_the_title_filter_and_applies_the_filter(java.lang.String)">
+                <span>And the user enters "NonExistentTitle" in the Title filter and applies the filter</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="com.freecrm.automation.stepDefinitions.deals.SearchAndFilterDealsSteps.the_user_should_see_an_empty_list_of_deals_indicating_no_matches_found()">
+                <span>Then the user should see an empty list of Deals, indicating no matches found</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+<div class="test-content scrollable">
+<div class="test-content-tools">
+<ul><li><a class="back-to-test" href="#"><i class="fa fa-arrow-left"></i></a></li></ul>
+</div>
+<div class="test-content-detail"><div class="detail-body"></div></div>
+</div></div>
+<div class="test-wrapper row view category-view attributes-view">
+<div class="test-list">
+<div class="test-list-tools">
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
+</div>
+<div class="test-list-wrapper scrollable">
+<ul class="test-list-item">
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>7</span>
+</span>
+<p class="name">@deals</p>
+<p class="duration text-sm">7 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@deals</h4>
+<span status="pass" class='badge log pass-bg'>7 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:48:51 pm</td>
+<td>
+<a href="#" class="linked" test-id='1' id='3'>User creates a deal with valid information</a>
+<div class="">
+<span class="badge badge-default">User, wants to create a deal to track potential sales opportunities.User creates a deal with valid information</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:49:12 pm</td>
+<td>
+<a href="#" class="linked" test-id='1' id='10'>User tries to create a deal with missing required fields or invalid inputs</a>
+<div class="">
+<span class="badge badge-default">User, wants to create a deal to track potential sales opportunities.User tries to create a deal with missing required fields or invalid inputs</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:49:41 pm</td>
+<td>
+<a href="#" class="linked" test-id='22' id='24'>Verify private deal visibility for allowed and restricted users</a>
+<div class="">
+<span class="badge badge-default">Deal Access Control for Private Deals.Verify private deal visibility for allowed and restricted users</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:50:49 pm</td>
+<td>
+<a href="#" class="linked" test-id='46' id='48'>To validate that a user can delete a deal successfully</a>
+<div class="">
+<span class="badge badge-default">User wants to delete a deal to remove outdated or irrelevant entries from the system.To validate that a user can delete a deal successfully</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:51:04 pm</td>
+<td>
+<a href="#" class="linked" test-id='57' id='59'>To validate that Global Search returns the correct deal by deal name</a>
+<div class="">
+<span class="badge badge-default">User wants to view and search deals to quickly find and manage relevant opportunities.To validate that Global Search returns the correct deal by deal name</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:51:21 pm</td>
+<td>
+<a href="#" class="linked" test-id='57' id='68'>To validate that filters (Stage, Status, Close Date, Source, Tags etc.) return correctly filtered deals</a>
+<div class="">
+<span class="badge badge-default">User wants to view and search deals to quickly find and manage relevant opportunities.To validate that filters (Stage, Status, Close Date, Source, Tags etc.) return correctly filtered deals</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:51:24 pm</td>
+<td>
+<a href="#" class="linked" test-id='57' id='72'>To validate that incorrect filters return empty lists.</a>
+<div class="">
+<span class="badge badge-default">User wants to view and search deals to quickly find and manage relevant opportunities.To validate that incorrect filters return empty lists.</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="test-content scrollable">
+<div class="test-content-detail">
+<div class="detail-body"></div>
+</div>
+</div>
+</div><div class="test-wrapper row view author-view attributes-view">
+<div class="test-list">
+<div class="test-list-tools">
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Author</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
+</div>
+<div class="test-list-wrapper scrollable">
+<ul class="test-list-item">
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>7</span>
+</span>
+<p class="name">SudeshnaPathak</p>
+<p class="duration text-sm">7 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>SudeshnaPathak</h4>
+<span status="pass" class='badge log pass-bg'>7 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:48:51 pm</td>
+<td>
+<a href="#" class="linked" test-id='1' id='3'>User creates a deal with valid information</a>
+<div class="">
+<span class="badge badge-default">User, wants to create a deal to track potential sales opportunities.User creates a deal with valid information</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:49:12 pm</td>
+<td>
+<a href="#" class="linked" test-id='1' id='10'>User tries to create a deal with missing required fields or invalid inputs</a>
+<div class="">
+<span class="badge badge-default">User, wants to create a deal to track potential sales opportunities.User tries to create a deal with missing required fields or invalid inputs</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:49:41 pm</td>
+<td>
+<a href="#" class="linked" test-id='22' id='24'>Verify private deal visibility for allowed and restricted users</a>
+<div class="">
+<span class="badge badge-default">Deal Access Control for Private Deals.Verify private deal visibility for allowed and restricted users</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:50:49 pm</td>
+<td>
+<a href="#" class="linked" test-id='46' id='48'>To validate that a user can delete a deal successfully</a>
+<div class="">
+<span class="badge badge-default">User wants to delete a deal to remove outdated or irrelevant entries from the system.To validate that a user can delete a deal successfully</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:51:04 pm</td>
+<td>
+<a href="#" class="linked" test-id='57' id='59'>To validate that Global Search returns the correct deal by deal name</a>
+<div class="">
+<span class="badge badge-default">User wants to view and search deals to quickly find and manage relevant opportunities.To validate that Global Search returns the correct deal by deal name</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:51:21 pm</td>
+<td>
+<a href="#" class="linked" test-id='57' id='68'>To validate that filters (Stage, Status, Close Date, Source, Tags etc.) return correctly filtered deals</a>
+<div class="">
+<span class="badge badge-default">User wants to view and search deals to quickly find and manage relevant opportunities.To validate that filters (Stage, Status, Close Date, Source, Tags etc.) return correctly filtered deals</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:51:24 pm</td>
+<td>
+<a href="#" class="linked" test-id='57' id='72'>To validate that incorrect filters return empty lists.</a>
+<div class="">
+<span class="badge badge-default">User wants to view and search deals to quickly find and manage relevant opportunities.To validate that incorrect filters return empty lists.</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="test-content scrollable">
+<div class="test-content-detail">
+<div class="detail-body"></div>
+</div>
+</div>
+</div>        </div>
+      </div>
+    </div>
+  </div>
+<script src="spark/spark-script.js"></script>
+<script type="text/javascript">
+        </script></body>
+</html>

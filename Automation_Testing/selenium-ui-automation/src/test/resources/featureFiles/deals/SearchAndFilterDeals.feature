@@ -1,6 +1,7 @@
 @deals
 Feature: User wants to view and search deals to quickly find and manage relevant opportunities
 
+  @aut_SudeshnaPathak
   Scenario Outline: To validate that Global Search returns the correct deal by deal name
     Given User should be logged in with "<LoginRow>"
     When the user clicks on the Deals tab in the main navigation menu
@@ -13,6 +14,7 @@ Feature: User wants to view and search deals to quickly find and manage relevant
       | searchTerm | LoginRow |
       | Quantum |  2          |
 
+  @aut_SudeshnaPathak
   Scenario Outline: To validate that filters (Stage, Status, Close Date, Source, Tags etc.) return correctly filtered deals
     When the user clicks on the show filter button and selects Stage from the dropdown
     And the user selects "<stage>" from the Stage options and applies the filter
@@ -21,7 +23,7 @@ Feature: User wants to view and search deals to quickly find and manage relevant
       | stage    |
       | Qualify  |
 
-
+  @aut_SudeshnaPathak
   Scenario: To validate that incorrect filters return empty lists.
     When the user clicks on the show filter button and selects Title from the dropdown
     And the user enters "NonExistentTitle" in the Title filter and applies the filter
