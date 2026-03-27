@@ -6,5 +6,5 @@ Feature: Search Contact Functionality
     Given User should be logged in
     And the user navigates to the contacts section
 
-    When user searches for "John"
-    Then correct contact "John" should be displayed
+    When user searches for "suvam"
+    Then correct contact "suvam" should be displayed
