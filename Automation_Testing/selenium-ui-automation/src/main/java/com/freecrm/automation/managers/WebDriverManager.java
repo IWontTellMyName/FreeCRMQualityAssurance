@@ -10,20 +10,21 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 public class WebDriverManager {
-    private static WebDriver driver;
-    private static DriverType driverType;
-
-    public WebDriverManager() {
-        driverType = ConfigFileReader.getInstance().getBrowser();
-    }
+    private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
     public WebDriver getDriver() {
-        if (driver == null) driver = createDriver();
+        WebDriver driver = DRIVER.get();
+        if (driver == null) {
+            driver = createDriver();
+            DRIVER.set(driver);
+        }
         return driver;
     }
 
 
     private WebDriver createDriver() {
+        DriverType driverType = ConfigFileReader.getInstance().getBrowser();
+        WebDriver driver;
         switch (driverType) {
             case FIREFOX:
                 driver = new FirefoxDriver();
@@ -34,6 +35,8 @@ public class WebDriverManager {
             case EDGE:
                 driver = new EdgeDriver();
                 break;
+            default:
+                throw new RuntimeException("Unsupported driver type: " + driverType);
         }
 
         if (ConfigFileReader.getInstance().getBrowserWindowSize()) driver.manage().window().maximize();
@@ -42,11 +45,10 @@ public class WebDriverManager {
     }
 
     public void closeDriver() {
+        WebDriver driver = DRIVER.get();
         if (driver != null) {
             driver.quit();
-            driver = null;
+            DRIVER.remove();
         }
     }
 }
-
-

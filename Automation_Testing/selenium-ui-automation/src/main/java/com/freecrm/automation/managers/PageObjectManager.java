@@ -9,11 +9,11 @@ import org.openqa.selenium.WebDriver;
 
 public class PageObjectManager {
         private final WebDriver driver;
-        private static HomePage homePage;
-        private static LoginPage loginPage;
-        private static DashboardPage dashboardPage;
-        private static DealsListPage dealsListPage;
-        private static DealsCreatePage dealsCreatePage;
+        private HomePage homePage;
+        private LoginPage loginPage;
+        private DashboardPage dashboardPage;
+        private DealsListPage dealsListPage;
+        private DealsCreatePage dealsCreatePage;
 
         public PageObjectManager(WebDriver driver) {
             this.driver = driver;

@@ -1,2 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="C:/MyProjects/Capgemini_Sprint/FreeCRMQualityAssurance/Automation_Testing/selenium-ui-automation/src/test/java/com/freecrm/automation/runners/TestRunnerDeals.java"><classes/></test></suite>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="CrossBrowserSuite" parallel="tests" thread-count="3" verbose="2">
+    <test name="ChromeSuite" preserve-order="true">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.freecrm.automation.runners.TestRunnerDeals"/>
+        </classes>
+    </test>
+
+    <test name="FirefoxSuite" preserve-order="true">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.freecrm.automation.runners.TestRunnerDeals"/>
+        </classes>
+    </test>
+
+    <test name="EdgeSuite" preserve-order="true">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="com.freecrm.automation.runners.TestRunnerDeals"/>
+        </classes>
+    </test>
+</suite>

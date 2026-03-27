@@ -9,6 +9,7 @@ import java.util.Properties;
 
 public class ConfigFileReader {
     private static ConfigFileReader configFileReader;
+    private static final ThreadLocal<DriverType> BROWSER_OVERRIDE = new ThreadLocal<>();
     private final Properties properties;
 
     private ConfigFileReader() {
@@ -31,6 +32,14 @@ public class ConfigFileReader {
             configFileReader = new ConfigFileReader();
         }
         return configFileReader;
+    }
+
+    public static void setBrowserForCurrentThread(String browserName) {
+        BROWSER_OVERRIDE.set(resolveBrowser(browserName));
+    }
+
+    public static void clearBrowserForCurrentThread() {
+        BROWSER_OVERRIDE.remove();
     }
 
     public long getImplicitlyWait() {
@@ -58,7 +67,14 @@ public class ConfigFileReader {
     }
 
     public DriverType getBrowser() {
-        String browserName = properties.getProperty("browser");
+        DriverType overriddenBrowser = BROWSER_OVERRIDE.get();
+        if (overriddenBrowser != null) {
+            return overriddenBrowser;
+        }
+        return resolveBrowser(properties.getProperty("browser"));
+    }
+
+    private static DriverType resolveBrowser(String browserName) {
         if(browserName == null || browserName.equalsIgnoreCase("chrome")) return DriverType.CHROME;
         else if(browserName.equalsIgnoreCase("firefox")) return DriverType.FIREFOX;
         else if(browserName.equalsIgnoreCase("edge")) return DriverType.EDGE;

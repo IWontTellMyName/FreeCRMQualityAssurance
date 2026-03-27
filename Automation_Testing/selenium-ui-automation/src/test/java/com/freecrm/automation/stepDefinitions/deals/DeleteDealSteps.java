@@ -48,8 +48,8 @@ public class DeleteDealSteps {
     }
     @Then("the {string} should be removed from the list of deals")
     public void the_deal_should_be_removed_from_the_list_of_deals(String dealTitle) throws InterruptedException {
+        Thread.sleep(2000);
         Assert.assertFalse(dealsListPage.validateDealPresence(dealTitle));
-//        webDriverManager.closeDriver();
     }
 
 }
