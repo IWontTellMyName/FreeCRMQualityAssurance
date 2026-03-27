@@ -1,6 +1,6 @@
 Feature: Contact Validation - Mandatory Fields
 
-  @TC_Contacts_10
+  @TC_Contacts
   Scenario: Error when mandatory fields are blank
 
     Given User should be logged in
