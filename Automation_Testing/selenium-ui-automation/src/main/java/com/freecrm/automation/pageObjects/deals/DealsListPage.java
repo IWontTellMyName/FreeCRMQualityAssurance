@@ -183,7 +183,7 @@ public class DealsListPage {
         WebElement deleteBtn = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//div[contains(@class,'modal') and contains(@class,'visible')]//button[contains(@class,'red')]")
         ));
-        Thread.sleep(1000);;
+        Thread.sleep(1000);
         deleteBtn.click();
     }
 
