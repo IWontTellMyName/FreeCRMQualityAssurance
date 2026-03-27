@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class TasksPage {
 
@@ -47,7 +48,7 @@ public class TasksPage {
     @FindBy(xpath = "//table[contains(@class,'custom-grid')]")
     WebElement taskTable;
 
-    @FindBy(xpath = "//span[@class='selectable ']")
+    @FindBy(xpath = "//p[text()='New_Task']")
     WebElement taskTitleDisplay;
 
     @FindBy(xpath = "//div[@class='actions']//button[text()='Cancel']")
@@ -55,6 +56,16 @@ public class TasksPage {
 
     @FindBy(xpath = "//div[@class='actions']//button[contains(@class,'red')]")
     WebElement confirmDeleteButton;
+
+    //search
+    @FindBy(xpath="//input[@placeholder='Search']")
+    WebElement searchBox;
+
+    @FindBy(xpath="//table//tbody//tr//td//a")
+    List<WebElement> taskResults;
+
+    @FindBy(xpath = "//h3[contains(.,'Task')]")
+    WebElement taskHeader;
     // Constructor
 
     public TasksPage(WebDriver driver) {
@@ -74,22 +85,14 @@ public class TasksPage {
         ((JavascriptExecutor) driver)
                 .executeScript("arguments[0].click();", createButton);
     }
-    public void clickTaskByName(String taskName) {
-
+    public void clickTaskByName(String taskName) throws InterruptedException {
+        Thread.sleep(3000);
+        WebElement req=driver.findElement(By.xpath("//div[@class='header item']"));
+        req.click();
         WebElement task = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//tbody//a[normalize-space()='" + taskName + "']")
         ));
-
-        // STEP 1: Move mouse away from sidebar (important)
-        Actions actions = new Actions(driver);
-
-        // Move to center of page (safe zone)
-        actions.moveByOffset(500, 200).perform();
-
-        // Small pause to let UI adjust
-        try { Thread.sleep(500); } catch (Exception e) {}
-
-        // STEP 2: Now click the task
+        // Now clicking the task
         wait.until(ExpectedConditions.elementToBeClickable(task)).click();
     }
 //    public void clickTaskByName(String taskName) {
@@ -223,6 +226,49 @@ public class TasksPage {
 
         } catch (Exception e) {
             return ""; // No message found
+        }
+    }
+    public boolean isTaskCreated() {
+        try {
+            // Locator for task rows (adjust as per your UI)
+            List<WebElement> tasks = driver.findElements(By.xpath("//table//tr//td[contains(text(),'Demo Task')]"));
+
+            return tasks.size() > 0;
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    //search
+    public void searchTask(String keyword) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+        wait.until(ExpectedConditions.visibilityOf(searchBox));
+
+        searchBox.clear();
+        searchBox.sendKeys(keyword);
+        searchBox.sendKeys(Keys.ENTER);
+    }
+    public boolean isTaskPresentInResults(String expectedTaskName) {
+        WebElement selection=driver.findElement(By.xpath("//div[text()='Task']"));
+        selection.click();
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+            wait.until(ExpectedConditions.visibilityOf(taskHeader));
+            wait.until(ExpectedConditions.visibilityOfAllElements(taskResults));
+
+            for (WebElement task : taskResults) {
+                if (task.getText().trim().equalsIgnoreCase(expectedTaskName)) {
+                    return true;
+                }
+            }
+
+            return false;
+
+        } catch (Exception e) {
+            return false;
         }
     }
 }

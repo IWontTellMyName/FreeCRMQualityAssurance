@@ -9,14 +9,13 @@ import org.testng.Assert;
 public class EditTask {
 
     WebDriverManager webDriverManager;
-    DashboardPage dashboardPage;
     TasksPage tasksPage;
 
     @Given("the user selects an existing task")
     public void the_user_selects_an_existing_task() throws InterruptedException {
-
+        webDriverManager = new WebDriverManager();
         tasksPage = new TasksPage(webDriverManager.getDriver());
-        tasksPage.clickTaskByName("task");  // or trial1
+        tasksPage.clickTaskByName("task");
     }
 
     @Then("the task details page should be displayed")
@@ -35,6 +34,11 @@ public class EditTask {
     @When("modifies the task title to {string}")
     public void modifies_the_task_title_to(String newTitle) {
         tasksPage.enterTitle(newTitle);
+    }
+
+    @When("clicks on Save after editing")
+    public void clicks_on_save_after_editing() {
+        tasksPage.clickSave();
     }
 
     @Then("the task should be updated successfully")

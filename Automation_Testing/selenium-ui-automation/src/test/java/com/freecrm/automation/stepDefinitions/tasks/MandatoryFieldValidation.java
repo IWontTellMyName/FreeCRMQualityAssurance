@@ -13,8 +13,6 @@ public class MandatoryFieldValidation {
 
     @When("the user leaves the task title empty")
     public void the_user_leaves_the_task_title_empty() {
-        // DO NOT navigate again
-        // Just click save
         tasksPage.clickSave();
     }
 

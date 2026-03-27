@@ -1,5 +1,5 @@
 Feature: Create Task
-  @TC_Task_01
+  @TC_Task
   Scenario: Create a task with valid inputs and verify in task list
     Given User should be logged in
     And the user clicks on the Tasks tab in the main navigation menu

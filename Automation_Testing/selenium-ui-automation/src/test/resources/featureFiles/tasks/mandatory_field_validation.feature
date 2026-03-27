@@ -1,5 +1,5 @@
 Feature: Validate mandatory fields in task creation
-  @TC_Task_04
+  @TC_Task
   Scenario: Validate task creation with empty title
     Given User should be logged in
     And the user clicks on the Tasks tab in the main navigation menu

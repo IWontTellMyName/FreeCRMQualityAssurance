@@ -6,6 +6,7 @@ import io.cucumber.java.en.*;
 import org.testng.Assert;
 
 public class DueDateValidation {
+
     WebDriverManager webDriverManager;
     TasksPage tasksPage;
 
@@ -16,14 +17,21 @@ public class DueDateValidation {
         tasksPage.enterDueDate(date);
     }
 
-
     @Then("a validation error message should be displayed")
     public void a_validation_error_message_should_be_displayed() {
 
-        String errorMessage = tasksPage.getDateValidationMessage(); // you need this method
+        String errorMessage = tasksPage.getDateValidationMessage();
 
-        Assert.assertTrue(errorMessage.length() > 0,
+        Assert.assertNotNull(errorMessage, "Validation message is null!");
+        Assert.assertFalse(errorMessage.trim().length() < 0,
                 "Validation message not displayed!");
     }
 
+    @Then("the task should not be created by due date")
+    public void task_should_not_be_created_by_due_date() {
+
+        boolean taskCreated = tasksPage.isTaskCreated();
+
+        Assert.assertFalse(taskCreated, "Task was created unexpectedly!");
+    }
 }

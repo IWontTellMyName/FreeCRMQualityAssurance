@@ -29,7 +29,7 @@ public class CreateTask {
 
         tasksPage = new TasksPage(webDriverManager.getDriver());
 
-        tasksPage.clickCreate();   // ✅ clean, reusable, stable
+        tasksPage.clickCreate();
     }
     @Then("the task creation form should be displayed")
     public void the_task_creation_form_should_be_displayed() {
@@ -73,13 +73,10 @@ public class CreateTask {
     public void the_created_task_should_be_visible_in_the_task_list(String taskName) {
         WebDriverWait wait = new WebDriverWait(webDriverManager.getDriver(), Duration.ofSeconds(15));
 
-// Step 1: Wait for table
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
 
-// Step 2: Wait for rows
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//tbody//tr")));
 
-// Step 3: Find task
         WebElement task = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//tbody//a[normalize-space()='" + taskName + "']")
         ));

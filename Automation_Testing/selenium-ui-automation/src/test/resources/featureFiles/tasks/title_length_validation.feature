@@ -1,5 +1,5 @@
 Feature: Validate task title length limit
-  @TC_Task_03
+  @TC_Task
   Scenario: Validate task title length limit
     Given User should be logged in
     And the user clicks on the Tasks tab in the main navigation menu
