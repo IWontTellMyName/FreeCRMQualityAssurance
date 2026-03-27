@@ -1,11 +1,14 @@
 Feature: Delete Contact Functionality
 
   @TC_Contacts
-  Scenario: TC_Contacts_20 - Delete a contact successfully
+  Scenario Outline: TC_Contacts_20 - Delete a contact successfully
 
-    Given User should be logged in
+    Given User should be logged in with "<LoginRow>"
     And the user navigates to the contacts section
 
-    When user deletes contact "John Doe"
+    When user deletes contact "Debashis Mandal"
 
-    Then contact "John Doe" should be deleted
+    Then contact "Debashis Mandal" should be deleted
+    Examples:
+      | LoginRow |
+      |3         |

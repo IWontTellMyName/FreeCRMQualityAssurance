@@ -1,9 +1,9 @@
 Feature: Contact Validation - Invalid Email
 
   @TC_Contacts
-  Scenario: Invalid email format - no validation applied (bug)
+ Scenario Outline: Invalid email format - no validation applied (bug)
 
-    Given User should be logged in
+    Given User should be logged in with "<LoginRow>"
     And the user navigates to the contacts section
 
     When user clicks on create button
@@ -13,3 +13,6 @@ Feature: Contact Validation - Invalid Email
     And user clicks on save button
 
     Then contact should be created successfully with invalid email
+    Examples:
+      | LoginRow |
+      |3         |
