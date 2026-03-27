@@ -1,6 +1,7 @@
 @deals
 Feature: Deal Access Control for Private Deals
 
+  @aut_SudeshnaPathak
   Scenario Outline: Verify private deal visibility for allowed and restricted users
 
     # Step 1: Create private deal with restricted access

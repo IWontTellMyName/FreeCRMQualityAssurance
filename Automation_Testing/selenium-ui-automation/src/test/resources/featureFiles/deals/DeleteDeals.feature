@@ -1,6 +1,7 @@
 @deals
 Feature: User wants to delete a deal to remove outdated or irrelevant entries from the system
 
+  @aut_SudeshnaPathak
   Scenario Outline: To validate that a user can delete a deal successfully
     Given User should be logged in with "<LoginRow>"
     And User is on the Deals page

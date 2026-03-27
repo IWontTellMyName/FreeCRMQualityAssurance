@@ -64,6 +64,7 @@ public class SearchAndFilterDealsSteps {
     }
     @Then("the user should see a list of Deals that are in the {string} stage")
     public void the_user_should_see_a_list_of_deals_that_are_in_the_stage(String string) throws InterruptedException {
+        Thread.sleep(2000);
         Assert.assertTrue(dealsListPage.validateFilterResults());
     }
 
