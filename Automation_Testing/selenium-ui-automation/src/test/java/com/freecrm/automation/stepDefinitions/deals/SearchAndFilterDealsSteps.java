@@ -1,5 +1,6 @@
 package com.freecrm.automation.stepDefinitions.deals;
 
+import com.freecrm.automation.dataProviders.ConfigFileReader;
 import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.DashboardPage;
@@ -69,7 +70,7 @@ public class SearchAndFilterDealsSteps {
     }
 
     @When("the user clicks on the show filter button and selects Title from the dropdown")
-    public void the_user_clicks_on_the_show_filter_button_and_selects_title_from_the_dropdown() {
+    public void the_user_clicks_on_the_show_filter_button_and_selects_title_from_the_dropdown() throws InterruptedException {
         webDriverManager= new WebDriverManager();
         driver = webDriverManager.getDriver();
         pageObjectManager = new PageObjectManager(driver);
@@ -81,13 +82,16 @@ public class SearchAndFilterDealsSteps {
         {
             System.out.println("No filters to clear");
         }
+        Thread.sleep(2000);
         dealsListPage.clickShowFiltersButton();
+        Thread.sleep(2000);
         dealsListPage.displayFilterDropdown();
+        Thread.sleep(2000);
         dealsListPage.selectTitleFilter();
     }
     @When("the user enters {string} in the Title filter and applies the filter")
-    public void the_user_enters_in_the_title_filter_and_applies_the_filter(String string) throws InterruptedException {
-        dealsListPage.enterTitle(string);
+    public void the_user_enters_in_the_title_filter_and_applies_the_filter(String dealTitle) throws InterruptedException {
+        dealsListPage.enterTitle(dealTitle + " " + ConfigFileReader.getInstance().getBrowser());
         Thread.sleep(1000);
         dealsListPage.clickApplyFilterButton();
     }

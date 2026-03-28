@@ -1,5 +1,6 @@
 package com.freecrm.automation.pageObjects.deals;
 
+import com.freecrm.automation.dataProviders.ConfigFileReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -190,7 +191,7 @@ public class DealsListPage {
     public boolean validateDealPresence(String dealTitle) throws InterruptedException {
         Thread.sleep(2000);
         return dealsTitlesList.stream()
-                .anyMatch(element -> element.getText().trim().equalsIgnoreCase(dealTitle));
+                .anyMatch(element -> element.getText().trim().equalsIgnoreCase(dealTitle + " " + ConfigFileReader.getInstance().getBrowser()));
     }
 
     public void clickCreateButton() {

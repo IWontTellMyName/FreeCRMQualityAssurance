@@ -138,7 +138,7 @@ public class DealsCreatePage {
         int listIndex = rowNum - 2;
         Map<String, String> deal = dealsInfo.get(listIndex);
 
-        enter_title(deal.get("Title"));
+        enter_title(deal.get("Title") + " " + ConfigFileReader.getInstance().getBrowser());
         enter_amount(deal.get("Amount"));
         select_stage(deal.get("Stage"));
         select_status(deal.get("Status"));

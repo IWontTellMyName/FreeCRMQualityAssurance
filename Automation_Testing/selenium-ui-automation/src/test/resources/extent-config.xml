@@ -17,7 +17,9 @@
         <documentTitle>FreeCRM Automation Testing</documentTitle>
 
         <!-- report name - displayed at top-nav -->
-        <reportName>Deals Module Test Report</reportName>
+<!--        <reportName>Deals Module Test Report</reportName>-->
+
+        <timeStampFormat>MM/dd/yyyy, hh:mm a</timeStampFormat>
 
         <!-- view report without internet -->
         <offlineMode>true</offlineMode>
