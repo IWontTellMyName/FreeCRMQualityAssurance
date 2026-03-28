@@ -5,6 +5,7 @@ import com.freecrm.automation.pageObjects.HomePage;
 import com.freecrm.automation.pageObjects.LoginPage;
 import com.freecrm.automation.pageObjects.company.ListViewPage;
 import com.freecrm.automation.pageObjects.contacts.ContactPage;
+import com.freecrm.automation.pageObjects.deals.DealDetailsPage;
 import com.freecrm.automation.pageObjects.deals.DealsCreatePage;
 import com.freecrm.automation.pageObjects.deals.DealsListPage;
 import com.freecrm.automation.pageObjects.tasks.TasksPage;
@@ -20,6 +21,7 @@ public class PageObjectManager {
         private ListViewPage listViewPage;
         private ContactPage contactPage;
         private TasksPage tasksPage;
+        private DealDetailsPage dealDetailsPage;
 
 
         public PageObjectManager(WebDriver driver) {
@@ -56,6 +58,10 @@ public class PageObjectManager {
 
         public TasksPage getTasksPage() {
             return (tasksPage == null) ? tasksPage = new TasksPage(driver) : tasksPage;
+        }
+
+        public DealDetailsPage getDealDetailsPage() {
+            return (dealDetailsPage == null) ? dealDetailsPage = new DealDetailsPage(driver) : dealDetailsPage;
         }
 
 }

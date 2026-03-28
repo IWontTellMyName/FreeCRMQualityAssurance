@@ -17,6 +17,7 @@ import java.util.Map;
 
 public class DealsCreatePage {
     WebDriver driver;
+    Map<String, String> deal;
 
     @FindBy(xpath = "//input[@name='title']")
     WebElement txt_title;
@@ -49,9 +50,6 @@ public class DealsCreatePage {
 
     @FindBy(xpath = "//i[@class='save icon']")
     WebElement btn_save;
-
-    @FindBy(xpath = "//i[@class='large money red icon']")
-    WebElement largeMoneyicon;
 
     @FindBy(xpath = "//i[@class='money icon']")
     WebElement moneyIcon;
@@ -136,7 +134,7 @@ public class DealsCreatePage {
 
 
         int listIndex = rowNum - 2;
-        Map<String, String> deal = dealsInfo.get(listIndex);
+        deal = dealsInfo.get(listIndex);
 
         enter_title(deal.get("Title") + " " + ConfigFileReader.getInstance().getBrowser());
         enter_amount(deal.get("Amount"));
@@ -149,7 +147,10 @@ public class DealsCreatePage {
 
     public boolean validate_deal_creation() throws InterruptedException {
         Thread.sleep(2000);
-        return largeMoneyicon.isDisplayed();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        By locator = By.xpath(String.format(SELECT_OPTION, deal.get("Title") + " " + ConfigFileReader.getInstance().getBrowser()));
+        WebElement DealTitle = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        return DealTitle.isDisplayed();
     }
 
     public void clickMoneyIcon() {
