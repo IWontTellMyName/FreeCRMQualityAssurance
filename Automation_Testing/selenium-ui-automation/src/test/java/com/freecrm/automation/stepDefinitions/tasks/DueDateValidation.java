@@ -1,19 +1,24 @@
 package com.freecrm.automation.stepDefinitions.tasks;
 
+import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.tasks.TasksPage;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class DueDateValidation {
-
     WebDriverManager webDriverManager;
+    WebDriver driver;
     TasksPage tasksPage;
+    PageObjectManager pageObjectManager;
 
     @When("the user enters task title {string}")
     public void the_user_enters_task_title(String string) {
         webDriverManager = new WebDriverManager();
-        tasksPage = new TasksPage(webDriverManager.getDriver());
+        driver = webDriverManager.getDriver();
+        pageObjectManager = new PageObjectManager(driver);
+        tasksPage = pageObjectManager.getTasksPage();
         tasksPage.enter_title(string);
     }
 

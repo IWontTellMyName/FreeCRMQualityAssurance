@@ -1,18 +1,25 @@
 package com.freecrm.automation.stepDefinitions.tasks;
 
+import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.DashboardPage;
 import com.freecrm.automation.pageObjects.tasks.TasksPage;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class MandatoryFieldValidation {
-
-    WebDriverManager webDriverManager = new WebDriverManager();
-    TasksPage tasksPage = new TasksPage(webDriverManager.getDriver());
+    WebDriverManager webDriverManager;
+    WebDriver driver;
+    TasksPage tasksPage;
+    PageObjectManager pageObjectManager;
 
     @When("the user leaves the task title empty")
     public void the_user_leaves_the_task_title_empty() {
+        webDriverManager = new WebDriverManager();
+        driver = webDriverManager.getDriver();
+        pageObjectManager = new PageObjectManager(driver);
+        tasksPage = pageObjectManager.getTasksPage();
         tasksPage.clickSave();
     }
 

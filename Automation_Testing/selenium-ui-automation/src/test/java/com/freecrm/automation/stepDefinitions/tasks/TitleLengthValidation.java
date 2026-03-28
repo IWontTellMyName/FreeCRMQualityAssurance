@@ -1,18 +1,25 @@
 package com.freecrm.automation.stepDefinitions.tasks;
 
+import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.tasks.TasksPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class TitleLengthValidation {
-
-    WebDriverManager webDriverManager = new WebDriverManager();
-    TasksPage tasksPage = new TasksPage(webDriverManager.getDriver());
+    WebDriverManager webDriverManager;
+    WebDriver driver;
+    TasksPage tasksPage;
+    PageObjectManager pageObjectManager;
 
     @When("the user enters a task title of length 260")
     public void the_user_enters_a_task_title_exceeding_250_characters() throws InterruptedException {
+        webDriverManager = new WebDriverManager();
+        driver = webDriverManager.getDriver();
+        pageObjectManager = new PageObjectManager(driver);
+        tasksPage = pageObjectManager.getTasksPage();
 
         StringBuilder sb = new StringBuilder();
 

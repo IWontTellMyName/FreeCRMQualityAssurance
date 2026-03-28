@@ -1,9 +1,11 @@
 package com.freecrm.automation.stepDefinitions.tasks;
 
+import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.DashboardPage;
 import com.freecrm.automation.pageObjects.tasks.TasksPage;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,17 +19,21 @@ public class CreateTask {
     DashboardPage dashboardPage;
     WebDriverManager webDriverManager;
     TasksPage tasksPage;
+    WebDriver driver;
+    PageObjectManager pageObjectManager;
 
     @Given("the user clicks on the Tasks tab in the main navigation menu")
     public void the_user_clicks_on_the_tasks_tab_in_the_main_navigation_menu() {
         webDriverManager = new WebDriverManager();
-        dashboardPage = new DashboardPage(webDriverManager.getDriver());
+        driver = webDriverManager.getDriver();
+        pageObjectManager = new PageObjectManager(driver);
+
+        dashboardPage = pageObjectManager.getDashboardPage();
         dashboardPage.clickTasksIcon();
     }
     @Given("the user clicks the create button to open the task creation form")
     public void the_user_clicks_the_create_button_to_open_the_task_creation_form() {
-
-        tasksPage = new TasksPage(webDriverManager.getDriver());
+        tasksPage = pageObjectManager.getTasksPage();
 
         tasksPage.clickCreate();
     }
