@@ -15,7 +15,7 @@ public class EditTask {
     public void the_user_selects_an_existing_task() throws InterruptedException {
         webDriverManager = new WebDriverManager();
         tasksPage = new TasksPage(webDriverManager.getDriver());
-        tasksPage.clickTaskByName("task");
+        tasksPage.clickTaskByName("Task");
     }
 
     @Then("the task details page should be displayed")
@@ -32,7 +32,7 @@ public class EditTask {
     }
 
     @When("modifies the task title to {string}")
-    public void modifies_the_task_title_to(String newTitle) {
+    public void modifies_the_task_title_to(String newTitle) throws InterruptedException {
         tasksPage.enterTitle(newTitle);
     }
 

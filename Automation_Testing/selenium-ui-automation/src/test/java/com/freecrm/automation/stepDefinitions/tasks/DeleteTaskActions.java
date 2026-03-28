@@ -9,7 +9,7 @@ public class DeleteTaskActions {
     WebDriverManager webDriverManager;
     TasksPage tasksPage;
 
-    String taskName = "task"; // keep simple for now
+    String taskName = "Task"; // keep simple for now
 
     @When("the user clicks on Delete")
     public void the_user_clicks_on_delete() {

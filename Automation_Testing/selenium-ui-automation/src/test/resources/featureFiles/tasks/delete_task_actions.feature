@@ -1,5 +1,5 @@
 Feature: Delete Task
-  @TC_Task_002
+  @TC_Task
   Scenario Outline: Cancel delete should not remove task
     Given User should be logged in with "<LoginRow>"
     And the user clicks on the Tasks tab in the main navigation menu

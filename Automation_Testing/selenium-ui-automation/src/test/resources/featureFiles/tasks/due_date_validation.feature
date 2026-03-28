@@ -1,6 +1,6 @@
 Feature: Task Due Date Validation
 
-  @TC_Task_003
+  @TC_Task
   Scenario Outline: Validate task creation with past due date
     Given User should be logged in with "<LoginRow>"
     And the user clicks on the Tasks tab in the main navigation menu
