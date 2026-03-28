@@ -18,7 +18,7 @@ public class deleteContactStep {
     public void user_deletes_contact(String name) {
         contactPage = new ContactPage(driver);
 
-        contactPage.selectContact(name);
+//        contactPage.selectContact(name);
         contactPage.clickDeleteContact(name);
         contactPage.confirmDelete();
     }

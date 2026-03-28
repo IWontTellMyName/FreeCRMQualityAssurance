@@ -1,6 +1,6 @@
 Feature: Verify Contacts List Display
 
-  @TC_Contacts1
+  @TC_Contacts
   Scenario Outline: TC_Contacts_01 - Verify contacts list is displayed on the contacts page
     Given User should be logged in with "<LoginRow>"
     And the user navigates to the contacts section
