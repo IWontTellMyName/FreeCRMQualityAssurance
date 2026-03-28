@@ -1,5 +1,6 @@
 package com.freecrm.automation.stepDefinitions.contacts;
 
+import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.contacts.ContactPage;
 import io.cucumber.java.en.Then;
@@ -11,12 +12,13 @@ public class searchContactStep {
 
     WebDriverManager webDriverManager = new WebDriverManager();
     WebDriver driver = webDriverManager.getDriver();
+    PageObjectManager pageObjectManager = new PageObjectManager(driver);
 
     ContactPage contactPage;
 
     @When("user searches for {string}")
     public void user_searches_for(String name) {
-        contactPage = new ContactPage(driver);
+        contactPage = pageObjectManager.getContactPage();
         contactPage.searchContact(name);
     }
 
