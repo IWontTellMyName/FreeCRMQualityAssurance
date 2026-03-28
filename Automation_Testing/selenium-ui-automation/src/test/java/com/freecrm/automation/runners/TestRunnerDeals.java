@@ -11,6 +11,17 @@ import org.testng.annotations.*;
         plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
         dryRun = false)
 public class TestRunnerDeals extends AbstractTestNGCucumberTests {
+    @BeforeClass(alwaysRun = true)
+
+    @Parameters("browser")
+    public void setUpBrowser(@Optional("chrome") String browser) {
+        ConfigFileReader.setBrowserForCurrentThread(browser);
+    }
+
+    @AfterClass(alwaysRun = true)
+    public void clearBrowserOverride() {
+        ConfigFileReader.clearBrowserForCurrentThread();
+    }
 
     @Override
     @DataProvider(parallel = false)
