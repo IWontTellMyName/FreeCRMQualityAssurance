@@ -1,5 +1,7 @@
 package com.freecrm.automation.pageObjects.tasks;
 
+import com.freecrm.automation.dataProviders.ConfigFileReader;
+import com.freecrm.automation.dataProviders.ExcelReader;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
 
 public class TasksPage {
 
@@ -20,15 +23,16 @@ public class TasksPage {
 
     @FindBy(name = "title")
     WebElement titleInput;
-
-    @FindBy(xpath = "//label[text()='Assigned To']/following::div[contains(@class,'dropdown')][1]")
+    //div[@role='listbox' and @aria-multiselectable='false' and @tabindex='0']
+    //label[text()='Assigned To']/..//i
+    @FindBy(xpath = "//label[text()='Assigned To']/..//i")
     WebElement assignedToDropdown;
-
-    @FindBy(xpath = "//span[text()='Subhangi Pandey']")
-    WebElement assignedUserOption;
 
     @FindBy(xpath = "//input[contains(@class,'calendarField')]")
     WebElement dueDateInput;
+
+    @FindBy(xpath = "//label[text()='Status']/..//div[text()='Select']")
+    WebElement statusDropDown;
 
     @FindBy(xpath = "//button[contains(@class,'linkedin')]")
     WebElement saveButton;
@@ -77,6 +81,50 @@ public class TasksPage {
 
     // Actions
 
+    //create
+
+    public void enter_title(String title) {
+        titleInput.sendKeys(title);
+    }
+    public void enter_duedate(String due_date ) {
+        dueDateInput.sendKeys(due_date);
+    }
+    public void select_assigned_to(String assigned_to) throws InterruptedException {
+        assignedToDropdown.click();
+        Thread.sleep(3000);
+        SelectOption(assigned_to);
+    }
+
+    private static final String SELECT_OPTION = "//span[text()='%s']";
+
+    private void SelectOption(String option) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        By locator = By.xpath(String.format(SELECT_OPTION, option));
+        WebElement selectOption = driver.findElement(locator);
+        wait.until(ExpectedConditions.elementToBeClickable(selectOption));
+        selectOption.click();
+    }
+    public void select_status(String status) {
+        statusDropDown.click();
+        SelectOption(status);
+    }
+
+    public void enterCredentials(Integer rowNum, String sheetName) throws Exception {
+        ExcelReader excelReader = new ExcelReader();
+        List<Map<String, String>> dealsInfo = excelReader.getData(
+                ConfigFileReader.getInstance().getExcelFilePath(), sheetName
+        );
+
+
+        int listIndex = rowNum - 2;
+        Map<String, String> task = dealsInfo.get(listIndex);
+
+        enter_title(task.get("Title"));
+        enter_duedate(task.get("Due Date"));
+        select_assigned_to(task.get("AssignedTo"));
+        select_status(task.get("Status"));
+    }
+
     public void clickCreate() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -114,16 +162,17 @@ public class TasksPage {
 //        titleInput.clear();
 //        titleInput.sendKeys(title);
 //    }
-    public void enterTitle(String title) {
+    public void enterTitle(String title) throws InterruptedException {
 
         wait.until(ExpectedConditions.visibilityOf(titleInput));
 
         titleInput.click();
-
+        Thread.sleep(2000);
         // Select all + delete
         titleInput.sendKeys(Keys.CONTROL + "a");
+        Thread.sleep(2000);
         titleInput.sendKeys(Keys.DELETE);
-
+        Thread.sleep(2000);
         // Enter new title
         titleInput.sendKeys(title);
     }

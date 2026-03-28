@@ -36,19 +36,9 @@ public class CreateTask {
         Assert.assertTrue(tasksPage.isTaskPageLoaded());
     }
 
-    @When("the user enters task title {string}")
-    public void the_user_enters_task_title(String title) {
-        tasksPage.enterTitle(title);
-    }
-
-//    @When("selects an assigned user")
-//    public void selects_an_assigned_user() throws InterruptedException {
-//        tasksPage.selectAssignedUser();
-//    }
-
-    @When("selects a valid due date")
-    public void selects_a_valid_due_date() {
-        tasksPage.enterDueDate("25/04/2026"); // static for now
+    @When("User enters {string} and {string} to fill in valid information")
+    public void user_fills_in_valid_information(String rowNum, String sheetName) throws Exception {
+        tasksPage.enterCredentials(Integer.parseInt(rowNum), sheetName);
     }
 
     @When("clicks on Save")

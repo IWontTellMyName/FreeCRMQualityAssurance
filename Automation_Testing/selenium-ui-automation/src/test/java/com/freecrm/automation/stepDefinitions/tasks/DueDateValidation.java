@@ -10,10 +10,15 @@ public class DueDateValidation {
     WebDriverManager webDriverManager;
     TasksPage tasksPage;
 
-    @When("the user selects due date {string} as a past date")
-    public void the_user_selects_due_date_as_a_past_date(String date) {
+    @When("the user enters task title {string}")
+    public void the_user_enters_task_title(String string) {
         webDriverManager = new WebDriverManager();
         tasksPage = new TasksPage(webDriverManager.getDriver());
+        tasksPage.enter_title(string);
+    }
+
+    @And("the user selects due date {string} as a past date")
+    public void the_user_selects_due_date_as_a_past_date(String date) {
         tasksPage.enterDueDate(date);
     }
 
