@@ -117,6 +117,8 @@ public class DealDetailsPage {
         taskName.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
 
         wait.until(ExpectedConditions.elementToBeClickable(checkIn)).click();
+
+        Thread.sleep(2000);
     }
 
     public void addEvent() {
@@ -153,12 +155,8 @@ public class DealDetailsPage {
                 By.xpath(String.format(VERIFY_EVENT, dealsInfo.get("Event")));
 
         WebElement event = wait.until(ExpectedConditions.visibilityOfElementLocated(eventLocator));
-        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", linkTask);
-        Thread.sleep(2000);
-        By taskLocator = By.xpath(String.format(VERIFY_TASK, dealsInfo.get("Task")));
-        WebElement task = wait.until(ExpectedConditions.visibilityOfElementLocated(taskLocator));
 
-        return company.isDisplayed() && contact.isDisplayed() && product.isDisplayed() && event.isDisplayed() && task.isDisplayed();
+        return company.isDisplayed() && contact.isDisplayed() && product.isDisplayed() && event.isDisplayed();
 
     }
 

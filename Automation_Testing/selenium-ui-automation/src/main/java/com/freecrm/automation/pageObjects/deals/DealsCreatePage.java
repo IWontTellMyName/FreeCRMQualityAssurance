@@ -45,6 +45,8 @@ public class DealsCreatePage {
 
     private static final String SELECT_OPTION = "//span[text()='%s']";
 
+    private static final String ASSIGN_OPTION = "(//div[@role='option']/span[text()='%s'])[2]";
+
     @FindBy(xpath = "//input[@name='probability']")
     WebElement txt_probability;
 
@@ -115,7 +117,11 @@ public class DealsCreatePage {
 
     public void select_assigned_to(String assigned_to) {
         assignedToDropDown.click();
-        SelectOption(assigned_to);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        By locator = By.xpath(String.format(ASSIGN_OPTION, assigned_to));
+        WebElement selectOption = driver.findElement(locator);
+        wait.until(ExpectedConditions.elementToBeClickable(selectOption));
+        selectOption.click();
     }
 
     private void SelectOption(String option) {

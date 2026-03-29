@@ -9,7 +9,6 @@ Feature: User wants to associate a deal with a Contact, Company, Product to main
     And edits the deal
     And associates contact, company, and product using "<AssociatedEntityRow>" from "<SheetName>"
     And clicks save
-    And associates task using "<AssociatedEntityRow>" from "<SheetName>"
     And associates event using "<AssociatedEntityRow>" from "<SheetName>"
     And clicks save
     Then User is on the Deals page

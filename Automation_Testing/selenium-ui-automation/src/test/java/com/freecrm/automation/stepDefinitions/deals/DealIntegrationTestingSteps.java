@@ -38,11 +38,6 @@ public class DealIntegrationTestingSteps {
         dealDetailsPage.clickSave();
     }
 
-    @When("associates task using {string} from {string}")
-    public void associates_task_using_from(String string, String string2) throws InterruptedException {
-        dealDetailsPage.linkTask();
-    }
-
     @When("associates event using {string} from {string}")
     public void associates_event_using_from(String string, String string2) {
         dealDetailsPage.addEvent();

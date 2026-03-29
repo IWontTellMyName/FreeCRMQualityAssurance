@@ -15,6 +15,8 @@ public class SearchAndFilterDealsSteps {
     private DealsListPage dealsListPage;
     private WebDriver driver;
     private PageObjectManager pageObjectManager;
+
+    //Scenario 1: To validate that Global Search returns the correct deal by deal name
     @When("the user clicks on the Deals tab in the main navigation menu")
     public void the_user_clicks_on_the_deals_tab_in_the_main_navigation_menu()
     {
@@ -48,6 +50,8 @@ public class SearchAndFilterDealsSteps {
         driver.navigate().back();
     }
 
+    //Scenario 2: To validate that filters (Stage, Status, Close Date, Source, Tags etc.) return correctly filtered deals
+
     @When("the user clicks on the show filter button and selects Stage from the dropdown")
     public void the_user_clicks_on_the_show_filter_button_and_selects_from_the_dropdown() {
         webDriverManager= new WebDriverManager();
@@ -68,6 +72,8 @@ public class SearchAndFilterDealsSteps {
         Thread.sleep(2000);
         Assert.assertTrue(dealsListPage.validateFilterResults(), "All Deals are not in the selected stage");
     }
+
+    //Scenario 3: To validate that incorrect filters return empty lists.
 
     @When("the user clicks on the show filter button and selects Title from the dropdown")
     public void the_user_clicks_on_the_show_filter_button_and_selects_title_from_the_dropdown() throws InterruptedException {

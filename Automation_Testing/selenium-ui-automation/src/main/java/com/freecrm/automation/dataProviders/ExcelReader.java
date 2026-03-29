@@ -2,7 +2,7 @@ package com.freecrm.automation.dataProviders;
 
 import org.apache.poi.ss.usermodel.*;
 
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -13,10 +13,14 @@ public class ExcelReader {
     public static int totalRow;
 
     public List<Map<String, String>> getData(String excelFilePath, String sheetName) throws IOException {
-        Workbook workbook = WorkbookFactory.create(new File(excelFilePath));
-        Sheet sheet = workbook.getSheet(sheetName);
-        workbook.close();
-        return readSheet(sheet);
+
+        try (FileInputStream fis = new FileInputStream(excelFilePath);
+             Workbook workbook = WorkbookFactory.create(fis)) {
+
+            Sheet sheet = workbook.getSheet(sheetName);
+
+            return readSheet(sheet);
+        }
     }
 
     private List<Map<String, String>> readSheet(Sheet sheet) {
