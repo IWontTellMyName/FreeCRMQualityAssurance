@@ -99,7 +99,6 @@ public class SearchAndFilterDealsSteps {
     public void the_user_should_see_an_empty_list_of_deals_indicating_no_matches_found() throws InterruptedException {
         Thread.sleep(2000);
         Assert.assertTrue(dealsListPage.validateNoRecords());
-//        webDriverManager.closeDriver();
     }
 
 

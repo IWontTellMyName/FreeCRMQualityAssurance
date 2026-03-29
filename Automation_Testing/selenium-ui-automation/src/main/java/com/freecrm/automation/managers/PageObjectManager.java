@@ -8,6 +8,7 @@ import com.freecrm.automation.pageObjects.contacts.ContactPage;
 import com.freecrm.automation.pageObjects.deals.DealDetailsPage;
 import com.freecrm.automation.pageObjects.deals.DealsCreatePage;
 import com.freecrm.automation.pageObjects.deals.DealsListPage;
+import com.freecrm.automation.pageObjects.deals.DealsPipelinePage;
 import com.freecrm.automation.pageObjects.tasks.TasksPage;
 import org.openqa.selenium.WebDriver;
 
@@ -22,6 +23,7 @@ public class PageObjectManager {
         private ContactPage contactPage;
         private TasksPage tasksPage;
         private DealDetailsPage dealDetailsPage;
+        private DealsPipelinePage dealsPipelinePage;
 
 
         public PageObjectManager(WebDriver driver) {
@@ -62,6 +64,10 @@ public class PageObjectManager {
 
         public DealDetailsPage getDealDetailsPage() {
             return (dealDetailsPage == null) ? dealDetailsPage = new DealDetailsPage(driver) : dealDetailsPage;
+        }
+
+        public DealsPipelinePage getDealsPipelinePage() {
+            return (dealsPipelinePage == null) ? dealsPipelinePage = new DealsPipelinePage(driver) : dealsPipelinePage;
         }
 
 }

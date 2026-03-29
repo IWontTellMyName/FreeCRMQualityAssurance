@@ -161,7 +161,7 @@ public class DealsListPage {
     public void clickTrashButton(String dealTitle) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        By locator = By.xpath(String.format(DELETE_BTN_XPATH, dealTitle));
+        By locator = By.xpath(String.format(DELETE_BTN_XPATH, dealTitle + " " + ConfigFileReader.getInstance().getBrowser()));
 
         WebElement deleteBtn = driver.findElement(locator);
         wait.until(ExpectedConditions.elementToBeClickable(deleteBtn));
