@@ -1,7 +1,7 @@
 package com.freecrm.automation.stepDefinitions.deals;
 
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
-import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.deals.DealDetailsPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -12,13 +12,11 @@ import java.io.IOException;
 
 public class DealIntegrationTestingSteps {
     DealDetailsPage dealDetailsPage;
-    WebDriverManager webDriverManager;
     PageObjectManager pageObjectManager;
 
     @When("the user opens the deal {string}")
     public void the_user_opens_the_deal(String dealTitle) throws InterruptedException {
-        webDriverManager = new WebDriverManager();
-        pageObjectManager = new PageObjectManager(webDriverManager.getDriver());
+        pageObjectManager = Hooks.getPageObjectManager();
         dealDetailsPage = pageObjectManager.getDealDetailsPage();
         dealDetailsPage.openDealDetailsPage(dealTitle);
     }

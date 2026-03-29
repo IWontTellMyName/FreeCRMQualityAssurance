@@ -1,7 +1,7 @@
 package com.freecrm.automation.stepDefinitions.deals;
 
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
-import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.deals.DealsCreatePage;
 import com.freecrm.automation.pageObjects.deals.DealsListPage;
 import io.cucumber.java.en.And;
@@ -12,8 +12,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class CreateDealSteps {
-
-    WebDriverManager webDriverManager;
     PageObjectManager pageObjectManager;
     WebDriver driver;
     DealsCreatePage dealsCreatePage;
@@ -22,9 +20,9 @@ public class CreateDealSteps {
     //Scenario: User creates a deal with valid information
     @When("User clicks on the Create Deal button")
     public void user_clicks_on_the_create_deal_button() {
-        webDriverManager = new WebDriverManager();
-        driver = webDriverManager.getDriver();
-        pageObjectManager = new PageObjectManager(driver);
+        driver = Hooks.getDriver();
+        pageObjectManager = Hooks.getPageObjectManager();
+
         dealsListPage = pageObjectManager.getDealsListPage();
         dealsCreatePage = pageObjectManager.getDealsCreatePage();
         dealsListPage.clickCreateButton();
@@ -50,9 +48,7 @@ public class CreateDealSteps {
     //Scenario: User tries to create a deal with missing required fields
     @Given("the user is the Deals page")
     public void the_user_is_the_deals_page() {
-        webDriverManager = new WebDriverManager();
-        driver = webDriverManager.getDriver();
-        pageObjectManager = new PageObjectManager(driver);
+        pageObjectManager = Hooks.getPageObjectManager();
         dealsCreatePage = pageObjectManager.getDealsCreatePage();
         dealsCreatePage.clickMoneyIcon();
     }
@@ -67,7 +63,7 @@ public class CreateDealSteps {
         try {
             Assert.assertTrue(dealsCreatePage.validate_deal_creation(), "Deal creation should fail");
         } catch (Exception e) {
-            Assert.assertFalse(false,  "Deal creation should fail");
+            Assert.assertFalse(false, "Deal creation should fail");
         }
     }
 
