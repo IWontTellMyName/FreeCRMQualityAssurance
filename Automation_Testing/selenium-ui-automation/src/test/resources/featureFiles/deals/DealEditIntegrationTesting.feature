@@ -1,5 +1,5 @@
 @deals
-Feature: Integration Testing for Deals with other modules like contacts, Company, Tasks, products etc.
+Feature: User wants to associate a deal with a Contact, Company, Product to maintain complete and connected CRM records
 
   @aut_SudeshnaPathak
   Scenario Outline: To validate that creating a deal with associated contact and company works correctly
