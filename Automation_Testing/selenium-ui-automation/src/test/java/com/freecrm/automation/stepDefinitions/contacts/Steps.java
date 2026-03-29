@@ -23,47 +23,35 @@ public class Steps {
     ConfigFileReader configFileReader;
     PageObjectManager pageObjectManager;
 
-//    @Given("User should be logged in")
-//    public void user_should_be_logged_in() {
-//        configFileReader = ConfigFileReader.getInstance();
-//        webDriverManager = new WebDriverManager();
-//        driver = webDriverManager.getDriver();
-//        driver.get(configFileReader.getApplicationUrl());
-//        pageObjectManager = new PageObjectManager(driver);
-//        homePage = pageObjectManager.getHomePage();
-//        loginPage = pageObjectManager.getLoginPage();
-//
-//        homePage.clickLogInButton();
-//        loginPage.login(configFileReader.getEmail(), configFileReader.getPassword());
-//    }
-@Given("User should be logged in with {string}")
-public void user_should_be_logged_in(String RowNumber) throws IOException {
-    configFileReader = ConfigFileReader.getInstance();
-    webDriverManager = new WebDriverManager();
-    driver = webDriverManager.getDriver();
-    driver.get(configFileReader.getApplicationUrl());
 
-    pageObjectManager = new PageObjectManager(driver);
-    homePage = pageObjectManager.getHomePage();
-    loginPage = pageObjectManager.getLoginPage();
+    @Given("User should be logged in with {string}")
+    public void user_should_be_logged_in(String RowNumber) throws IOException {
+        configFileReader = ConfigFileReader.getInstance();
+        webDriverManager = new WebDriverManager();
+        driver = webDriverManager.getDriver();
+        driver.get(configFileReader.getApplicationUrl());
 
-    String sheetName = "Credentials";
+        pageObjectManager = new PageObjectManager(driver);
+        homePage = pageObjectManager.getHomePage();
+        loginPage = pageObjectManager.getLoginPage();
 
-    ExcelReader excelReader = new ExcelReader();
-    List<Map<String, String>> loginInfo = excelReader.getData(
-            ConfigFileReader.getInstance().getExcelFilePath(), sheetName
-    );
+        String sheetName = "Credentials";
 
-    int listIndex = Integer.parseInt(RowNumber) - 2;
-    Map<String, String> credentials = loginInfo.get(listIndex);
+        ExcelReader excelReader = new ExcelReader();
+        List<Map<String, String>> loginInfo = excelReader.getData(
+                ConfigFileReader.getInstance().getExcelFilePath(), sheetName
+        );
 
-    String email = credentials.get("email");
-    String password = credentials.get("password");
+        int listIndex = Integer.parseInt(RowNumber) - 2;
+        Map<String, String> credentials = loginInfo.get(listIndex);
 
-    homePage.clickLogInButton();
-    loginPage.login(email, password);
-//        loginPage.login(configFileReader.getEmail(), configFileReader.getPassword());
-}
+        String email = credentials.get("email");
+        String password = credentials.get("password");
+
+        homePage.clickLogInButton();
+        loginPage.login(email, password);
+
+    }
 }
 
 

@@ -91,7 +91,7 @@ public class ContactPage {
     }
 
 
-    // ================= DELETE CONTACT =================
+    // DELETE CONTACT
 
     public void selectContact(String name) {
         String xpath = "//a[text()='" + name + "']/ancestor::tr//div[@class='ui fitted checkbox']/label";
@@ -158,6 +158,7 @@ public class ContactPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOf(lastNameError)).isDisplayed();
     }
+
 
     //filter
     @FindBy(xpath = "//button[contains(text(),'Show Filters')]")
