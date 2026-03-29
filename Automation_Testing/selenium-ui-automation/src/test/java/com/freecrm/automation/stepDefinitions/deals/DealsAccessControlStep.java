@@ -1,7 +1,7 @@
 package com.freecrm.automation.stepDefinitions.deals;
 
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
-import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.deals.DealsCreatePage;
 import com.freecrm.automation.pageObjects.deals.DealsListPage;
 import io.cucumber.java.en.Then;
@@ -9,15 +9,13 @@ import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 public class DealsAccessControlStep {
-    WebDriverManager webDriverManager;
     PageObjectManager pageObjectManager;
     DealsCreatePage dealsCreatePage;
     DealsListPage dealsListPage;
 
     @When("sets Access to Private")
     public void sets_access_to() throws InterruptedException {
-        webDriverManager = new WebDriverManager();
-        pageObjectManager = new PageObjectManager(webDriverManager.getDriver());
+        pageObjectManager = Hooks.getPageObjectManager();
         dealsListPage = pageObjectManager.getDealsListPage();
         dealsCreatePage = pageObjectManager.getDealsCreatePage();
         dealsCreatePage.clickUnlockIcon();
