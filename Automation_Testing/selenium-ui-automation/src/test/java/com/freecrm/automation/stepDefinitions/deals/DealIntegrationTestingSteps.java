@@ -50,11 +50,11 @@ public class DealIntegrationTestingSteps {
 
     @Then("the deal should be updated successfully with the associated contact, company, product, task and event")
     public void the_deal_should_be_updated_successfully_with_the_associated_contact_company_product_task_and_event() throws InterruptedException {
-        Assert.assertTrue(dealDetailsPage.verifyDealEdit());
+        Assert.assertTrue(dealDetailsPage.verifyDealEdit(), "Deal not updated successfully");
     }
 
     @Then("the event should be visible in the calendar")
     public void the_event_should_be_visible_in_the_calendar() throws InterruptedException {
-        Assert.assertTrue(dealDetailsPage.openCalender());
+        Assert.assertTrue(dealDetailsPage.openCalender(), "Event not visible in the calendar");
     }
 }

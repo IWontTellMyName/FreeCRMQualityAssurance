@@ -27,7 +27,7 @@ public class SearchAndFilterDealsSteps {
     }
     @Then("the user should be on the Deals page")
     public void the_user_should_be_on_the_deals_page() {
-        Assert.assertTrue(dealsListPage.isDealsListDisplayed());
+        Assert.assertTrue(dealsListPage.isDealsListDisplayed(), "Deals page is not displayed");
     }
     @When("the user enters {string} in the global search box and clicks the search icon")
     public void the_user_enters_in_the_global_search_box_and_clicks_the_search_icon(String searchTerm) {
@@ -35,7 +35,7 @@ public class SearchAndFilterDealsSteps {
     }
     @Then("the user should see a list of Records matching the search term")
     public void the_user_should_see_a_list_of_records_matching_the_search_term() {
-        Assert.assertTrue(dealsListPage.validateDealsRecord());
+        Assert.assertTrue(dealsListPage.validateDealsRecord(), "Records do not match the search Term");
     }
     @When("the user clicks on Deals in the Records")
     public void the_user_clicks_on_deals_in_the_records(){
@@ -43,7 +43,7 @@ public class SearchAndFilterDealsSteps {
     }
     @Then("the user should see a list of Deals matching the {string}")
     public void the_user_should_see_a_list_of_deals_matching_the_search_term(String searchTerm) throws InterruptedException {
-        Assert.assertTrue(dealsListPage.validateGlobalSearch(searchTerm));
+        Assert.assertTrue(dealsListPage.validateGlobalSearch(searchTerm),  "List of Deals do not match the search term");
         Thread.sleep(3000);
         driver.navigate().back();
     }
@@ -66,7 +66,7 @@ public class SearchAndFilterDealsSteps {
     @Then("the user should see a list of Deals that are in the {string} stage")
     public void the_user_should_see_a_list_of_deals_that_are_in_the_stage(String string) throws InterruptedException {
         Thread.sleep(2000);
-        Assert.assertTrue(dealsListPage.validateFilterResults());
+        Assert.assertTrue(dealsListPage.validateFilterResults(), "All Deals are not in the selected stage");
     }
 
     @When("the user clicks on the show filter button and selects Title from the dropdown")
@@ -98,7 +98,7 @@ public class SearchAndFilterDealsSteps {
     @Then("the user should see an empty list of Deals, indicating no matches found")
     public void the_user_should_see_an_empty_list_of_deals_indicating_no_matches_found() throws InterruptedException {
         Thread.sleep(2000);
-        Assert.assertTrue(dealsListPage.validateNoRecords());
+        Assert.assertTrue(dealsListPage.validateNoRecords(), "Deals list is not empty");
     }
 
 

@@ -44,7 +44,7 @@ public class CreateDealSteps {
     @Then("the deal should be created successfully")
     public void the_deal_should_be_created_successfully() throws InterruptedException {
         driver.navigate().refresh();
-        Assert.assertTrue(dealsCreatePage.validate_deal_creation());
+        Assert.assertTrue(dealsCreatePage.validate_deal_creation(), "Deal creation failed");
     }
 
     //Scenario: User tries to create a deal with missing required fields
@@ -65,15 +65,15 @@ public class CreateDealSteps {
     @Then("the deal should not be created successfully")
     public void the_deal_should_not_be_created() {
         try {
-            Assert.assertTrue(dealsCreatePage.validate_deal_creation());
+            Assert.assertTrue(dealsCreatePage.validate_deal_creation(), "Deal creation should fail");
         } catch (Exception e) {
-            Assert.assertFalse(false);
+            Assert.assertFalse(false,  "Deal creation should fail");
         }
     }
 
     @Then("the user should see an error message indicating which fields are required")
     public void the_user_should_see_an_error_message_indicating_which_fields_are_required() {
-        Assert.assertTrue(dealsCreatePage.validateTitleRequired());
+        Assert.assertTrue(dealsCreatePage.validateTitleRequired(), "Title is required");
     }
 
     @And("the user fills in the missing required fields with valid data")
@@ -91,7 +91,7 @@ public class CreateDealSteps {
         try {
             dealsCreatePage.click_save();
         } catch (Exception e) {
-            Assert.assertFalse(false);
+            Assert.assertFalse(false, "Probabilty should be between 0 and 100");
         }
     }
 }
