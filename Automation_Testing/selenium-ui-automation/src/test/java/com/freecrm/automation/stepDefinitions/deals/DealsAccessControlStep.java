@@ -38,10 +38,10 @@ public class DealsAccessControlStep {
     }
     @Then("the {string} should be visible in the results")
     public void the_deal_should_be_visible_in_the_results(String title) throws InterruptedException {
-        Assert.assertTrue(dealsListPage.validateDealPresence(title));
+        Assert.assertTrue(dealsListPage.validateDealPresence(title), "Deal is not visible in the results");
     }
     @Then("the {string} should not be visible in the results")
     public void the_deal_should_not_be_visible_in_the_results(String title) throws InterruptedException {
-        Assert.assertTrue(dealsListPage.validateNoRecords());
+        Assert.assertTrue(dealsListPage.validateNoRecords(), "Deal is visible in the results");
     }
 }

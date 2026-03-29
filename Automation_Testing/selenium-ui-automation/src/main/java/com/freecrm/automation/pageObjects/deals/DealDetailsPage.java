@@ -176,6 +176,7 @@ public class DealDetailsPage {
     public void clickSave() throws InterruptedException {
         Thread.sleep(2000);
         save.click();
+        Thread.sleep(2000);
     }
 
 }

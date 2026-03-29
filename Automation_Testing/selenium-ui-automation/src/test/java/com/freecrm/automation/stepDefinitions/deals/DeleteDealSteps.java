@@ -36,7 +36,7 @@ public class DeleteDealSteps {
     }
     @Then("the {string} should still be present in the list of deals")
     public void the_deal_should_still_be_present_in_the_list_of_deals(String dealTitle) throws InterruptedException {
-        Assert.assertTrue(dealsListPage.validateDealPresence(dealTitle));
+        Assert.assertTrue(dealsListPage.validateDealPresence(dealTitle), "Deal is not present in the list of deals");
     }
     @When("the user selects the same {string} deal again and clicks on the delete icon")
     public void the_user_selects_the_same_deal_again_and_clicks_on_the_delete_icon(String dealTitle) {
@@ -50,7 +50,7 @@ public class DeleteDealSteps {
     @Then("the {string} should be removed from the list of deals")
     public void the_deal_should_be_removed_from_the_list_of_deals(String dealTitle) throws InterruptedException {
         Thread.sleep(2000);
-        Assert.assertFalse(dealsListPage.validateDealPresence(dealTitle));
+        Assert.assertFalse(dealsListPage.validateDealPresence(dealTitle), "Deal is not removed from the list of deals");
     }
 
 }
