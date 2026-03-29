@@ -4,24 +4,27 @@ import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
 import org.testng.Assert;
 
+import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.DashboardPage;
 import com.freecrm.automation.pageObjects.company.ListViewPage;
 
 public class SearchAndFilterSteps {
 	WebDriverManager webDriverManager;
+	WebDriver driver;
+    PageObjectManager pageObjectManager;
     DashboardPage dashboardPage;
 	ListViewPage listViewPage;
-	WebDriver driver;
 
     @Given("User has navigated to Companies dashboard")
     public void navigate_to_companies() {
         webDriverManager = new WebDriverManager();
         driver = webDriverManager.getDriver();
-        dashboardPage = new DashboardPage(driver);
+        pageObjectManager = new PageObjectManager(driver);
+        dashboardPage = pageObjectManager.getDashboardPage();
         dashboardPage.clickCompanyIcon();
 
-		listViewPage = new ListViewPage(driver);
+		listViewPage = pageObjectManager.getListViewPage();
 		Assert.assertTrue(listViewPage.validateListViewPage());
     }
 

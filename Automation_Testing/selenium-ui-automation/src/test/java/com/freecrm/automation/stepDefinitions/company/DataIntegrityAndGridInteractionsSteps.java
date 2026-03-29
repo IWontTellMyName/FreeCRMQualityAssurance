@@ -1,28 +1,48 @@
 package com.freecrm.automation.stepDefinitions.company;
 
 import io.cucumber.java.en.*;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
 import org.openqa.selenium.*;
 import org.testng.Assert;
 
+import com.freecrm.automation.dataProviders.ConfigFileReader;
+import com.freecrm.automation.dataProviders.ExcelReader;
+import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.DashboardPage;
 import com.freecrm.automation.pageObjects.company.ListViewPage;
 
 public class DataIntegrityAndGridInteractionsSteps {
 	WebDriverManager webDriverManager;
+	WebDriver driver;
+    PageObjectManager pageObjectManager;
     DashboardPage dashboardPage;
 	ListViewPage listViewPage;
-	WebDriver driver;
+    String companyName;
+
+    
 
 	@Given("User has navigated to the Company dashboard")
     public void navigate_to_companies() {
         webDriverManager = new WebDriverManager();
         driver = webDriverManager.getDriver();
-        dashboardPage = new DashboardPage(driver);
+        pageObjectManager = new PageObjectManager(driver);
+        dashboardPage = pageObjectManager.getDashboardPage();
         dashboardPage.clickCompanyIcon();
 
-		listViewPage = new ListViewPage(driver);
+		listViewPage = pageObjectManager.getListViewPage();
 		Assert.assertTrue(listViewPage.validateListViewPage());
+
+
+
+
+
+
+
     }
 
     // Locators mapped to provided HTML
@@ -31,7 +51,18 @@ public class DataIntegrityAndGridInteractionsSteps {
 
 	//Scenario 1: Validate address concatenation for company records
     @Then("the address for {string} should display as {string}")
-    public void verify_address_concatenation(String companyName, String expectedAddress) {
+    public void verify_address_concatenation(String rowNum, String expectedAddress) throws IOException {
+        
+        ExcelReader excelReader = new ExcelReader();
+        List<Map<String, String>> companyInfo = excelReader.getData(
+                ConfigFileReader.getInstance().getExcelFilePath(), "Company"
+        );
+
+        int listIndex = Integer.parseInt(rowNum) - 2;
+        Map<String, String> company = companyInfo.get(listIndex);
+        String companyName = company.get("Company");
+
+        
         System.out.println("Data Integrity and Grid Interactions Scenario 1 starts");
         // Find row where 2nd column matches company name, then get text from 3rd column
         String xpath = "//td/a[text()='" + companyName + "']/parent::td/following-sibling::td[1]";
@@ -41,7 +72,16 @@ public class DataIntegrityAndGridInteractionsSteps {
 	
 	//Scenario 2: Verify navigation via company name hyperlink
 	@When("User clicks on the company name {string}")
-	public void click_company_link(String companyName) throws InterruptedException {
+	public void click_company_link(String rowNum) throws InterruptedException, IOException {
+        ExcelReader excelReader = new ExcelReader();
+        List<Map<String, String>> companyInfo = excelReader.getData(
+                ConfigFileReader.getInstance().getExcelFilePath(), "Company"
+        );
+
+        int listIndex = Integer.parseInt(rowNum) - 2;
+        Map<String, String> company = companyInfo.get(listIndex);
+        String companyName = company.get("Company");
+
 		System.out.println("Data Integrity and Grid Interactions Scenario 2 starts");
         driver.navigate().refresh();
         // Thread.sleep(5000);
@@ -49,7 +89,16 @@ public class DataIntegrityAndGridInteractionsSteps {
     }
 
     @Then("the user should be redirected to the detailed record page for {string}")
-    public void verify_url_id(String companyName) {
+    public void verify_url_id(String rowNum) throws IOException {
+        ExcelReader excelReader = new ExcelReader();
+        List<Map<String, String>> companyInfo = excelReader.getData(
+                ConfigFileReader.getInstance().getExcelFilePath(), "Company"
+        );
+
+        int listIndex = Integer.parseInt(rowNum) - 2;
+        Map<String, String> company = companyInfo.get(listIndex);
+        String companyName = company.get("Company");
+
 		String displayText = driver.findElement(By.className("selectable")).getText();
         Assert.assertEquals(displayText, companyName);
     }
