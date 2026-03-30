@@ -8,6 +8,9 @@ import com.freecrm.automation.context.TestContext;
 import com.freecrm.automation.dataBuilder.PetDataBuilder;
 import com.freecrm.automation.enums.Context;
 import com.freecrm.automation.enums.PetStatus;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.apache.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -24,6 +27,9 @@ public class PetApiTests extends BaseTest{
     }
 
     @Test(priority = 1, description = "Create new pet")
+    @Epic("Pet API Tests")
+    @Feature("Create Pet")
+    @Story("Create a new pet and validate the response")
     public void testCreatePet() {
         long pet_id = getConfigReader().getPetId();
         Pet newPet = PetDataBuilder.buildNewPet(pet_id);
@@ -66,6 +72,9 @@ public class PetApiTests extends BaseTest{
     }
 
     @Test(priority = 2, description = "Get pet by ID")
+    @Epic("Pet API Tests")
+    @Feature("Find Pet By Id")
+    @Story("Retrieve the created pet by ID and validate the response")
     public void testGetPetById() {
 
         long PET_ID = (long) getScenarioContext().getContext(Context.PET_ID);
@@ -104,6 +113,9 @@ public class PetApiTests extends BaseTest{
     }
 
     @Test(priority = 3, description = "Find pets by status")
+    @Epic("Pet API Tests")
+    @Feature("Find Pets by Status")
+    @Story("Find pets by status 'available' and validate the response")
     public void testFindPetByStatus() {
         IRestResponse<Pet[]> response = getApiService().findPetByStatus(PetStatus.available);
         long petId = (long) getScenarioContext().getContext(Context.PET_ID);
@@ -129,6 +141,9 @@ public class PetApiTests extends BaseTest{
     }
 
     @Test(priority = 4, description = "Update pet")
+    @Epic("Pet API Tests")
+    @Feature("Update Pet")
+    @Story("Update the existing pet's name, status, and tags, then validate the response")
     public void testUpdatePet() {
         long PET_ID = (long) getScenarioContext().getContext(Context.PET_ID);
         Pet updatedPet = PetDataBuilder.buildUpdatedPet(PET_ID);
@@ -193,6 +208,9 @@ public class PetApiTests extends BaseTest{
     }
 
     @Test(priority = 5, description = "Delete pet")
+    @Epic("Pet API Tests")
+    @Feature("Delete Pet")
+    @Story("Delete the existing pet and validate the response, then verify deletion by attempting to retrieve the pet")
     public void deletePet() {
         long  PET_ID = (long) getScenarioContext().getContext(Context.PET_ID);
         IRestResponse<ApiResponse> response = getApiService().deletePet(PET_ID);
