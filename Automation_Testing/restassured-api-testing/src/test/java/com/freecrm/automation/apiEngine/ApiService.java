@@ -44,12 +44,13 @@ public class ApiService {
         return new RestResponse<>(Pet.class, res);
     }
 
-    public IRestResponse<Pet> findPetByStatus(PetStatus petStatus) {
+    public RestResponse<Pet[]> findPetByStatus(PetStatus petStatus) {
         Response res = requestSpec()
                 .queryParam("status", petStatus.name().toLowerCase())
                 .when()
                 .get(Routes.PET_FIND_BY_STATUS);
-        return new RestResponse<>(Pet.class, res);
+
+        return new RestResponse<>(Pet[].class, res);
     }
 
     public IRestResponse<Pet> findPetById(long petId) {
@@ -117,21 +118,22 @@ public class ApiService {
         return new RestResponse<>(User.class, res);
     }
 
-    public IRestResponse<User> updateUser(String userName)
+    public IRestResponse<ApiResponse> updateUser(String userName, User updatedUser)
     {
         Response res = requestSpec()
+                .body(updatedUser)
                 .pathParam("username", userName)
                 .when()
-                .get(Routes.USER_UPDATE_BY_USERNAME);
-        return new RestResponse<>(User.class, res);
+                .put(Routes.USER_UPDATE_BY_USERNAME);
+        return new RestResponse<>(ApiResponse.class, res);
     }
 
-    public IRestResponse<ApiResponse>  deleteUser(String userName)
+    public IRestResponse<ApiResponse> deleteUser(String userName)
     {
         Response res = requestSpec()
                 .pathParam("username", userName)
                 .when()
-                .get(Routes.USER_DELETE_BY_USERNAME);
+                .delete(Routes.USER_DELETE_BY_USERNAME);
         return new RestResponse<>(ApiResponse.class, res);
     }
 
@@ -143,12 +145,12 @@ public class ApiService {
         return new RestResponse<>(ApiResponse.class, res);
     }
 
-    public IRestResponse<User> createUser(User user) {
+    public IRestResponse<ApiResponse> createUser(User user) {
         Response res = requestSpec()
                 .body(user)
                 .when()
                 .post(Routes.USER_CREATE);
-        return new RestResponse<>(User.class, res);
+        return new RestResponse<>(ApiResponse.class, res);
     }
 
 
