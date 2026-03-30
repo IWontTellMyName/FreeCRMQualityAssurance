@@ -104,7 +104,7 @@ public class PetApiTests extends BaseTest{
     }
 
     @Test(priority = 3, description = "Find pets by status")
-    public void findPetByStatus() {
+    public void testFindPetByStatus() {
         IRestResponse<Pet[]> response = getApiService().findPetByStatus(PetStatus.available);
         long petId = (long) getScenarioContext().getContext(Context.PET_ID);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK, "Expected status code 200");
