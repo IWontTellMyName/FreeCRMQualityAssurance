@@ -1,5 +1,6 @@
 package com.freecrm.automation.apiEngine;
 
+import com.freecrm.automation.apiEngine.model.ApiResponse;
 import com.freecrm.automation.exceptions.DeserializationException;
 import io.restassured.response.Response;
 
@@ -21,6 +22,16 @@ public class RestResponse<T> implements IRestResponse<T> {
         } catch (Exception e) {
             this.exception = e;
             throw new DeserializationException("Failed to deserialize response body to " + responseType.getSimpleName(), e);
+        }
+    }
+
+    @Override
+    public ApiResponse getErrorBody() {
+        try {
+            return response.getBody().as(ApiResponse.class);
+        } catch (Exception e) {
+            this.exception = e;
+            throw new DeserializationException("Failed to deserialize error response body to ApiResponse", e);
         }
     }
 

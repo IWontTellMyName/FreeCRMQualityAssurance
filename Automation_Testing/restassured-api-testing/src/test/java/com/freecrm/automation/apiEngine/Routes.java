@@ -26,6 +26,7 @@ public class Routes {
     // ── User endpoints ─────────────────────────────────────────
     public static final String USER_CREATE              = USER;
     public static final String USER_CREATE_WITH_LIST    = USER + "/createWithList";
+    public static final String USER_CREATE_WITH_ARRAY   = USER + "/createWithList";
     public static final String USER_LOGIN               = USER + "/login";
     public static final String USER_LOGOUT              = USER + "/logout";
     public static final String USER_BY_USERNAME         = USER + "/{username}";

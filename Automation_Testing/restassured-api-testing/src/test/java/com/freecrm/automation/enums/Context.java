@@ -7,7 +7,6 @@ public enum Context {
     API_RESPONSE,
     ORDER_ID,
     ORDER,
-    INVENTORY,
     USERNAME,
     USER,
 }

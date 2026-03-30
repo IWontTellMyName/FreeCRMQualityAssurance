@@ -42,4 +42,28 @@ public class ConfigReader {
         if (apiKey != null) return apiKey;
         else throw new RuntimeException("apiKey not specified in the Configuration.properties file.");
     }
+
+    public long getPetId() {
+        String petId = properties.getProperty("PET_ID");
+        if (petId != null) return Long.parseLong(petId);
+        else throw new RuntimeException("petId not specified in the Configuration.properties file.");
+    }
+
+    public long getOrderId() {
+        String orderId = properties.getProperty("ORDER_ID");
+        if (orderId != null) return Long.parseLong(orderId);
+        else throw new RuntimeException("orderId not specified in the Configuration.properties file.");
+    }
+
+    public long getUserId1() {
+        String userId = properties.getProperty("USER_ID1");
+        if (userId != null) return Long.parseLong(userId);
+        else throw new RuntimeException("userId not specified in the Configuration.properties file.");
+    }
+
+    public long getUserId2() {
+        String userId = properties.getProperty("USER_ID2");
+        if (userId != null) return Long.parseLong(userId);
+        else throw new RuntimeException("userId2 not specified in the Configuration.properties file.");
+    }
 }

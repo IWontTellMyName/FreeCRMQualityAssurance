@@ -1,4 +1,4 @@
-package com.freecrm.automation.cucumber;
+package com.freecrm.automation.context;
 
 import com.freecrm.automation.enums.Context;
 
