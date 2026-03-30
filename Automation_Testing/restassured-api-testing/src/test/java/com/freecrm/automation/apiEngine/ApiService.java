@@ -6,6 +6,7 @@ import com.freecrm.automation.apiEngine.model.Pet;
 import com.freecrm.automation.apiEngine.model.User;
 import com.freecrm.automation.enums.PetStatus;
 import com.freecrm.automation.utils.ConfigReader;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -23,6 +24,7 @@ public class ApiService {
 
     private RequestSpecification requestSpec() {
         return given()
+                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .baseUri(baseUrl)
                 .relaxedHTTPSValidation();
