@@ -40,7 +40,7 @@ public class ApiService {
         Response res = requestSpec()
                 .body(updatedPet)
                 .when()
-                .post(Routes.PET_UPDATE);
+                .put(Routes.PET_UPDATE);
         return new RestResponse<>(Pet.class, res);
     }
 

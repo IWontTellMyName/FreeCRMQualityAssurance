@@ -128,5 +128,98 @@ public class PetApiTests extends BaseTest{
 
     }
 
+    @Test(priority = 4, description = "Update pet")
+    public void testUpdatePet() {
+        long PET_ID = (long) getScenarioContext().getContext(Context.PET_ID);
+        Pet updatedPet = PetDataBuilder.buildUpdatedPet(PET_ID);
+        Pet oldPet = (Pet) getScenarioContext().getContext(Context.PET);
+
+        IRestResponse<Pet> response = getApiService().updatePet(updatedPet);
+        if(response.isSuccessful())
+        {
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK, "Expected status code 200");
+            Pet petResponse = response.getBody();
+            Assert.assertNotNull(petResponse);
+
+            Assert.assertEquals(petResponse.getId(), updatedPet.getId());
+            Assert.assertEquals(petResponse.getName(), updatedPet.getName());
+            Assert.assertEquals(petResponse.getStatus(), updatedPet.getStatus());
+
+            Assert.assertNotNull(petResponse.getCategory());
+            Assert.assertEquals(petResponse.getCategory().getId(), updatedPet.getCategory().getId());
+            Assert.assertEquals(petResponse.getCategory().getName(), updatedPet.getCategory().getName());
+
+            Assert.assertNotNull(petResponse.getPhotoUrls());
+            Assert.assertEquals(petResponse.getPhotoUrls().size(), 2);
+
+            Assert.assertNotNull(petResponse.getTags());
+            Assert.assertEquals(petResponse.getTags().size(), updatedPet.getTags().size());
+
+            List<String> tagNames = petResponse.getTags()
+                    .stream()
+                    .map(Tag::getName)
+                    .collect(Collectors.toList());
+
+            Assert.assertTrue(tagNames.contains("golden-retriever"));
+            Assert.assertTrue(tagNames.contains("friendly"));
+            Assert.assertTrue(tagNames.contains("adopted"));
+
+            //Test against old Dog
+            Assert.assertNotEquals(petResponse.getName(), oldPet.getName());
+            Assert.assertNotEquals(petResponse.getStatus(), oldPet.getStatus());
+            Assert.assertFalse(tagNames.contains("vaccinated"));
+
+            getScenarioContext().setContext(Context.PET, updatedPet);
+
+            //Status check after update
+            IRestResponse<Pet[]> res = getApiService().findPetByStatus(PetStatus.available);
+            Pet[] petsArray = res.getBody();
+            Assert.assertNotNull(petsArray);
+
+            List<Pet> petList = Arrays.asList(petsArray);
+            Assert.assertFalse(petList.isEmpty(), "Expected at least one pet with status 'available'");
+
+            Assert.assertFalse(
+                    petList.stream().anyMatch(p -> p.getId() == PET_ID),
+                    "Bella (ID: " + PET_ID + ") should not be found in results!"
+            );
+
+        }
+        else
+        {
+            ApiResponse errorResponse = response.getErrorBody();
+            Assert.assertEquals(errorResponse.getType(), "error");
+        }
+    }
+
+    @Test(priority = 5, description = "Delete pet")
+    public void deletePet() {
+        long  PET_ID = (long) getScenarioContext().getContext(Context.PET_ID);
+        IRestResponse<ApiResponse> response = getApiService().deletePet(PET_ID);
+
+        Assert.assertEquals(response.getStatusCode(), HttpStatus.SC_OK, "Expected status code 200");
+        Assert.assertTrue(response.isSuccessful(), "Expected successful response");
+
+        ApiResponse apiResponse = response.getBody();
+        Assert.assertNotNull(apiResponse);
+        Assert.assertEquals(apiResponse.getType(), "unknown");
+        Assert.assertEquals(apiResponse.getMessage(), String.valueOf(PET_ID));
+        Assert.assertEquals(apiResponse.getCode(), 200);
+
+        //Validate Deletion
+        IRestResponse<Pet> res = getApiService().findPetById(PET_ID);
+        Assert.assertEquals(res.getStatusCode(), HttpStatus.SC_NOT_FOUND, "Expected status code 404");
+        Assert.assertFalse(res.isSuccessful(), "Expected unsuccessful response");
+        Assert.assertEquals(res.getErrorBody().getType(), "error");
+        Assert.assertEquals(res.getErrorBody().getMessage(), "Pet not found");
+
+        //Validate Re-deletion after deletion
+        IRestResponse<ApiResponse> deleteResponse =  getApiService().deletePet(PET_ID);
+        Assert.assertEquals(deleteResponse.getStatusCode(), HttpStatus.SC_NOT_FOUND, "Expected status code 404");
+        Assert.assertFalse(deleteResponse.isSuccessful(), "Expected unsuccessful response");
+        Assert.assertTrue(deleteResponse.getContent().isEmpty());
+
+    }
+
 
 }
