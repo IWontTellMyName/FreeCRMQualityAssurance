@@ -4,33 +4,33 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UserDataBuilder {
-    public static final String USERNAME = "priya.chakraborty";
-    public static final String PASSWORD = "Vet@Nurse2024";
+//    public static final String USERNAME = "priya.chakraborty";
+//    public static final String PASSWORD = "Vet@Nurse2024";
 
     private UserDataBuilder() {}
 
-    public static User buildNewUser(long user_id) {
+    public static User buildNewUser(long user_id, String username, String firstName, String lastName, String email, String password, String phone) {
         return User.builder()
                 .id(user_id)
-                .username(USERNAME)
-                .firstName("Priya")
-                .lastName("Chakraborty")
-                .email("priya.chakraborty@vetclinic.com")
-                .password(PASSWORD)
-                .phone("9876500001")
+                .username(username)
+                .firstName(firstName)
+                .lastName(lastName)
+                .email(email)
+                .password(password)
+                .phone(phone)
                 .userStatus(1)
                 .build();
     }
 
-    public static User buildUpdatedUser(long user_id) {
+    public static User buildUpdatedUser(long user_id, String username, String firstName, String lastName, String email, String password, String phone) {
         return User.builder()
                 .id(user_id)
-                .username(USERNAME)
-                .firstName("Priya")
-                .lastName("Chakraborty-Banerjee")    // Married — last name updated
-                .email("p.chakraborty@vetclinic.com") // New work email
-                .password(PASSWORD)
-                .phone("9876500099")                  // New phone number
+                .username(username)
+                .firstName(firstName)
+                .lastName(lastName) // Married — last name updated
+                .email(email)
+                .password(password)
+                .phone(phone)
                 .userStatus(1)
                 .build();
     }
@@ -38,7 +38,7 @@ public class UserDataBuilder {
     public static List<User> buildUserList() {
         return Arrays.asList(
                 User.builder()
-                        .id(55002L)
+                        .id(55003L)
                         .username("arjun.vet")
                         .firstName("Arjun")
                         .lastName("Mukherjee")
@@ -48,7 +48,7 @@ public class UserDataBuilder {
                         .userStatus(1)
                         .build(),
                 User.builder()
-                        .id(55003L)
+                        .id(55004L)
                         .username("sutapa.adopt")
                         .firstName("Sutapa")
                         .lastName("Ghosh")

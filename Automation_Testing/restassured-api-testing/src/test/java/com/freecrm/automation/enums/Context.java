@@ -9,4 +9,10 @@ public enum Context {
     ORDER,
     USERNAME,
     USER,
+    FIRSTNAME,
+    LASTNAME,
+    EMAIL,
+    PASSWORD,
+    PHONE,
+    USERSTATUS
 }
