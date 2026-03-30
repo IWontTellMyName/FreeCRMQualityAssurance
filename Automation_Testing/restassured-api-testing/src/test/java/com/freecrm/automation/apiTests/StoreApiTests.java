@@ -54,22 +54,6 @@ public class StoreApiTests extends BaseTest {
         long order_id= getConfigReader().getOrderId();
         IRestResponse<Order> response = getApiService().getOrder(order_id);
 
-//        given()
-//                .spec(requestSpec)
-//                .pathParam("orderId", ORDER_ID)
-//                .when()
-//                .get("/store/order/{orderId}")
-//                .then()
-//                .spec(responseSpec)
-//                .statusCode(200)
-//                .body("id",       equalTo(ORDER_ID))
-//                .body("petId",    equalTo((int) PET_ID))
-//                .body("quantity", equalTo(1))
-//                .body("status",   equalTo("placed"))
-//                .body("complete", equalTo(false))
-//                .time(lessThan(ConfigManager.MAX_RESPONSE_TIME));
-
-
         Assert.assertEquals(response.getStatusCode(), 200, "Expected status code 200");
         Assert.assertTrue(response.isSuccessful(), "Expected successful response");
         if(response.isSuccessful()) {
@@ -93,26 +77,6 @@ public class StoreApiTests extends BaseTest {
         long order_id= getConfigReader().getOrderId();
         IRestResponse<ApiResponse> response=getApiService().deleteOrder(order_id);
 
-        // Step A — Cancel order
-//        given()
-//                .spec(requestSpec)
-//                .pathParam("orderId", ORDER_ID)
-//                .when()
-//                .delete("/store/order/{orderId}")
-//                .then()
-//                .spec(responseSpec)
-//                .statusCode(200)
-//                .time(lessThan(ConfigManager.MAX_RESPONSE_TIME));
-//
-//        // Step B — Confirm cancellation with 404
-//        given()
-//                .spec(requestSpec)
-//                .pathParam("orderId", ORDER_ID)
-//                .when()
-//                .get("/store/order/{orderId}")
-//                .then()
-//                .spec(responseSpec)
-//                .statusCode(404);
         System.out.println("Response: " + response.getContent());
         Assert.assertEquals(response.getBody().getType(),"unknown");
 
