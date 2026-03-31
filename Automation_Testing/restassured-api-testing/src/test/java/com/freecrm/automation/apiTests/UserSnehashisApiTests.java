@@ -6,6 +6,9 @@ import com.freecrm.automation.apiEngine.model.User;
 import com.freecrm.automation.context.TestContext;
 import com.freecrm.automation.dataBuilder.UserDataBuilder;
 import com.freecrm.automation.enums.Context;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -16,6 +19,9 @@ public class UserSnehashisApiTests extends BaseTest{
     }
 
     @Test(priority = 1, description = "Create single user")
+    @Epic("User API Tests Set 1")
+    @Feature("Create User")
+    @Story("Create a new user with valid details")
     public void createUser() {
         long userId = getConfigReader().getUserId1();
         getScenarioContext().setContext(Context.USERNAME, "Snehashis");
@@ -45,6 +51,9 @@ public class UserSnehashisApiTests extends BaseTest{
     // TEST 2 — GET /user/{username}
     // ─────────────────────────────────────────
     @Test(priority = 2, description = "Get user by username")
+    @Epic("User API Tests Set 1")
+    @Feature("Get User")
+    @Story("Retrieve user details by username")
     public void testGetUserByUsername() {
         String userName = getScenarioContext().getContext(Context.USERNAME).toString();
         IRestResponse<User> response = getApiService().getUserByUserName(userName);
@@ -64,6 +73,9 @@ public class UserSnehashisApiTests extends BaseTest{
     // TEST 3 — PUT /user/{username}
     // ─────────────────────────────────────────
     @Test(priority = 3, description = "Update user")
+    @Epic("User API Tests Set 1")
+    @Feature("Update User")
+    @Story("Update existing user details")
     public void updateUser() {
 
         getScenarioContext().setContext(Context.LASTNAME, "Mandal-Updated");
@@ -89,6 +101,9 @@ public class UserSnehashisApiTests extends BaseTest{
     // TEST 4 — DELETE /user/{username}
     // ─────────────────────────────────────────
     @Test(priority = 4, description = "Delete user")
+    @Epic("User API Tests Set 1")
+    @Feature("Delete User")
+    @Story("Delete user by username")
     public void deleteUser() {
 
         IRestResponse<ApiResponse> response = getApiService().deleteUser(getScenarioContext().getContext(Context.USERNAME).toString());
