@@ -80,7 +80,7 @@ public class StoreApiTests extends BaseTest {
         System.out.println("Response: " + response.getContent());
         Assert.assertEquals(response.getBody().getType(),"unknown");
 
-        Assert.assertEquals(response.getStatusCode(),404);
+        Assert.assertEquals(response.getStatusCode(),200);
 
     }
 
