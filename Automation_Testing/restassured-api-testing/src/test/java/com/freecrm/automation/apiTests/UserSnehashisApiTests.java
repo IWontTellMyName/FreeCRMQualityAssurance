@@ -42,7 +42,7 @@ public class UserSnehashisApiTests extends BaseTest{
 
 
     // ─────────────────────────────────────────
-    // TEST 4 — GET /user/{username}
+    // TEST 2 — GET /user/{username}
     // ─────────────────────────────────────────
     @Test(priority = 2, description = "Get user by username")
     public void testGetUserByUsername() {
@@ -61,7 +61,7 @@ public class UserSnehashisApiTests extends BaseTest{
     }
 
     // ─────────────────────────────────────────
-    // TEST 5 — PUT /user/{username}
+    // TEST 3 — PUT /user/{username}
     // ─────────────────────────────────────────
     @Test(priority = 3, description = "Update user")
     public void updateUser() {
@@ -86,7 +86,7 @@ public class UserSnehashisApiTests extends BaseTest{
 
 
     // ─────────────────────────────────────────
-    // TEST 7 — DELETE /user/{username}
+    // TEST 4 — DELETE /user/{username}
     // ─────────────────────────────────────────
     @Test(priority = 4, description = "Delete user")
     public void deleteUser() {
