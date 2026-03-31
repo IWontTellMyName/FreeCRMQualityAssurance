@@ -155,5 +155,19 @@ public class ApiService {
         return new RestResponse<>(ApiResponse.class, res);
     }
 
+    public IRestResponse<ApiResponse> login(String username, String password){
+        Response res = requestSpec()
+                .queryParam("username", username)
+                .queryParam("password", password)        
+                .when()
+                .get(Routes.USER_LOGIN);
+        return new RestResponse<>(ApiResponse.class, res);
+    }
 
+    public IRestResponse<ApiResponse> logout(){
+        Response res = requestSpec()
+                .when()
+                .get(Routes.USER_LOGOUT);
+        return new RestResponse<>(ApiResponse.class, res);
+    }
 }

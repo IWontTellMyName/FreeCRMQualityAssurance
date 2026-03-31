@@ -11,13 +11,12 @@ import org.testng.Assert;
 
 import com.freecrm.automation.dataProviders.ConfigFileReader;
 import com.freecrm.automation.dataProviders.ExcelReader;
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
-import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.DashboardPage;
 import com.freecrm.automation.pageObjects.company.ListViewPage;
 
 public class DataIntegrityAndGridInteractionsSteps {
-	WebDriverManager webDriverManager;
 	WebDriver driver;
     PageObjectManager pageObjectManager;
     DashboardPage dashboardPage;
@@ -28,9 +27,8 @@ public class DataIntegrityAndGridInteractionsSteps {
 
 	@Given("User has navigated to the Company dashboard")
     public void navigate_to_companies() {
-        webDriverManager = new WebDriverManager();
-        driver = webDriverManager.getDriver();
-        pageObjectManager = new PageObjectManager(driver);
+        driver = Hooks.getDriver();
+        pageObjectManager = Hooks.getPageObjectManager();
         dashboardPage = pageObjectManager.getDashboardPage();
         dashboardPage.clickCompanyIcon();
 

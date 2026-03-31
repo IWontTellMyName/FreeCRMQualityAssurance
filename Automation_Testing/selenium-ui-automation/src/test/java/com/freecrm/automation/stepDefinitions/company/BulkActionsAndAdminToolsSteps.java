@@ -4,13 +4,12 @@ import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
 import org.testng.Assert;
 
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
-import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.DashboardPage;
 import com.freecrm.automation.pageObjects.company.ListViewPage;
 
 public class BulkActionsAndAdminToolsSteps {
-	WebDriverManager webDriverManager;
 	WebDriver driver;
     PageObjectManager pageObjectManager;
     DashboardPage dashboardPage;
@@ -18,9 +17,9 @@ public class BulkActionsAndAdminToolsSteps {
 
     @Given("User has navigated to the Companies dashboard")
     public void navigate_to_companies() {
-        webDriverManager = new WebDriverManager();
-        driver = webDriverManager.getDriver();
-        pageObjectManager = new PageObjectManager(driver);
+        driver = Hooks.getDriver();
+        pageObjectManager = Hooks.getPageObjectManager();
+        new PageObjectManager(driver);
         dashboardPage = pageObjectManager.getDashboardPage();
         dashboardPage.clickCompanyIcon();
 
