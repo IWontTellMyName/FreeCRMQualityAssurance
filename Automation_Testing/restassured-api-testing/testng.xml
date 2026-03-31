@@ -27,12 +27,27 @@
         </classes>
     </test>
 
-    <test name="User Tests">
+    <test name="User Tests Set Snehashis">
         <classes>
             <class name="com.freecrm.automation.apiTests.UserSnehashisApiTests">
                 <methods>
                     <include name="createUser"/>
                     <include name="testGetUserByUsername"/>
+                    <include name="updateUser"/>
+                    <include name="deleteUser"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="User Tests Set Snehal">
+        <classes>
+            <class name="com.freecrm.automation.apiTests.UserSnehalApiTests">
+                <methods>
+                    <include name="createUsersWithArray"/>
+                    <include name="createUsersWithList"/>
+                    <include name="loginUser"/>
+                    <include name="logoutUser"/>
                     <include name="updateUser"/>
                     <include name="deleteUser"/>
                 </methods>
