@@ -1,0 +1,62 @@
+pipeline {
+
+    agent any
+
+    tools {
+        maven 'MyMaven'
+        jdk 'MyJava'
+    }
+
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Git branch to build')
+    }
+
+    environment {
+        PROJECT_DIR = "Automation_Testing/restassured-api-testing"
+        ALLURE_RESULTS = "allure-results-${BUILD_NUMBER}"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: "${params.BRANCH_NAME}",
+                    url: 'https://github.com/IWontTellMyName/FreeCRMQualityAssurance.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                dir("${PROJECT_DIR}") {
+                    bat 'mvn clean compile'
+                }
+            }
+        }
+
+        stage('Run TestNG Tests') {
+            steps {
+                dir("${PROJECT_DIR}") {
+                    bat """
+                    mvn test ^
+                    -Dsurefire.suiteXmlFiles=testng.xml ^
+                    -Dallure.results.directory=target\\${ALLURE_RESULTS}
+                    """
+                }
+            }
+        }
+
+        stage('Publish Allure Report') {
+            steps {
+                allure includeProperties: false,
+                       jdk: '',
+                       results: [[path: "${PROJECT_DIR}/target/${ALLURE_RESULTS}"]]
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Build Completed: ${env.BUILD_NUMBER}"
+        }
+    }
+}
