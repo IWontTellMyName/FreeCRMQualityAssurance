@@ -4,8 +4,11 @@ import com.freecrm.automation.dataProviders.ConfigFileReader;
 import com.freecrm.automation.enums.DriverType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.time.Duration;
 
@@ -25,22 +28,43 @@ public class WebDriverManager {
     private WebDriver createDriver() {
         DriverType driverType = ConfigFileReader.getInstance().getBrowser();
         WebDriver driver;
+
         switch (driverType) {
             case FIREFOX:
-                driver = new FirefoxDriver();
+                FirefoxOptions ffOptions = new FirefoxOptions();
+                ffOptions.addArguments("--headless");  // ✅ important
+                driver = new FirefoxDriver(ffOptions);
                 break;
+
             case CHROME:
-                driver = new ChromeDriver();
+                ChromeOptions chOptions = new ChromeOptions();
+                chOptions.addArguments("--headless=new");  // ✅ critical for Jenkins
+                chOptions.addArguments("--no-sandbox");
+                chOptions.addArguments("--disable-dev-shm-usage");
+                chOptions.addArguments("--remote-allow-origins=*");
+                driver = new ChromeDriver(chOptions);
                 break;
+
             case EDGE:
-                driver = new EdgeDriver();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--headless=new"); // ✅ important
+                edgeOptions.addArguments("--no-sandbox");
+                edgeOptions.addArguments("--disable-dev-shm-usage");
+                driver = new EdgeDriver(edgeOptions);
                 break;
+
             default:
                 throw new RuntimeException("Unsupported driver type: " + driverType);
         }
 
-        if (ConfigFileReader.getInstance().getBrowserWindowSize()) driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(ConfigFileReader.getInstance().getImplicitlyWait()));
+        if (ConfigFileReader.getInstance().getBrowserWindowSize()) {
+            driver.manage().window().maximize();
+        }
+
+        driver.manage().timeouts().implicitlyWait(
+                Duration.ofSeconds(ConfigFileReader.getInstance().getImplicitlyWait())
+        );
+
         return driver;
     }
 
