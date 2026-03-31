@@ -1,0 +1,52 @@
+pipeline {
+
+    agent any
+
+    tools {
+        maven 'MyMaven'
+        jdk 'MyJava'
+    }
+
+    parameters {
+        choice(
+            name: 'TEST_SUITE',
+            choices: [
+                'company-testing.xml',
+                'contact-testing.xml',
+                'deals-testing.xml',
+                'tasks-testing.xml'
+            ],
+            description: 'Select TestNG XML to run'
+        )
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/IWontTellMyName/FreeCRMQualityAssurance.git'
+            }
+        }
+
+        stage('Run Selected Test Suite') {
+            steps {
+                dir('Automation_Testing/selenium-ui-automation') {
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=${params.TEST_SUITE}"
+                }
+            }
+        }
+
+        stage('Publish Extent Spark Report') {
+            steps {
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'Automation_Testing/selenium-ui-automation/test-output/SparkReport',
+                    reportFiles: 'Spark.html',
+                    reportName: "Extent Spark Report - ${params.TEST_SUITE}"
+                ])
+            }
+        }
+    }
+}
