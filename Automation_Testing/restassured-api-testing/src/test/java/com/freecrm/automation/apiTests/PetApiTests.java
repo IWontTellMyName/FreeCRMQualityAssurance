@@ -211,7 +211,7 @@ public class PetApiTests extends BaseTest{
     @Epic("Pet API Tests")
     @Feature("Delete Pet")
     @Story("Delete the existing pet and validate the response, then verify deletion by attempting to retrieve the pet")
-    public void deletePet() {
+    public void testDeletePet() {
         long  PET_ID = (long) getScenarioContext().getContext(Context.PET_ID);
         IRestResponse<ApiResponse> response = getApiService().deletePet(PET_ID);
 
