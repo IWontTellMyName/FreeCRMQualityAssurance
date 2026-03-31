@@ -1,5 +1,6 @@
 package com.freecrm.automation.stepDefinitions.contacts;
 
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.DashboardPage;
@@ -10,11 +11,10 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class verifyContactsStep {
-    WebDriverManager webDriverManager = new WebDriverManager();
+
     DashboardPage dashboardPage;
     ContactPage contactPage;
-    WebDriver driver = webDriverManager.getDriver();
-    PageObjectManager pageObjectManager = new PageObjectManager(driver);
+    PageObjectManager pageObjectManager = Hooks.getPageObjectManager();
     @Given("the user navigates to the contacts section")
     public void the_user_navigates_to_the_contacts_section() {
 //        webDriverManager = new WebDriverManager();
