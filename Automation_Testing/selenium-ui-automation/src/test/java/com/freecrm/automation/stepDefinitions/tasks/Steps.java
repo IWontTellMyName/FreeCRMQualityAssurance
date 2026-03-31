@@ -24,18 +24,6 @@ public class Steps {
     ConfigFileReader configFileReader;
     PageObjectManager pageObjectManager;
 
-//    @Given("User should be logged in")
-//    public void user_should_be_logged_in() {
-//        configFileReader = ConfigFileReader.getInstance();
-//        webDriverManager = new WebDriverManager();
-//        driver = webDriverManager.getDriver();
-//        driver.get(configFileReader.getApplicationUrl());
-//        pageObjectManager = new PageObjectManager(driver);
-//        homePage = pageObjectManager.getHomePage();
-//        loginPage = pageObjectManager.getLoginPage();
-//        homePage.clickLogInButton();
-//        loginPage.login(configFileReader.getEmail(), configFileReader.getPassword());
-//    }
 @Given("User should be logged in with {string}")
 public void user_should_be_logged_in(String RowNumber) throws IOException {
     configFileReader = ConfigFileReader.getInstance();
