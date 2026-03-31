@@ -7,9 +7,7 @@ Feature: Create Task
     Then the task creation form should be displayed
     When User enters "<TaskRow>" and "<SheetName>" to fill in valid information
     And clicks on Save
-
     Then the task should be created successfully
-
     When the user navigates to the task list
     Then the created task "Task" should be visible in the task list
     Examples:
