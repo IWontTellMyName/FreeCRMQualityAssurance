@@ -2,6 +2,7 @@ package com.freecrm.automation.stepDefinitions.contacts;
 
 import com.freecrm.automation.dataProviders.ConfigFileReader;
 import com.freecrm.automation.dataProviders.ExcelReader;
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.contacts.ContactPage;
@@ -16,9 +17,7 @@ import java.util.Map;
 
 public class createContactStep {
 
-    WebDriverManager webDriverManager = new WebDriverManager();
-    WebDriver driver = webDriverManager.getDriver();
-    PageObjectManager pageObjectManager = new PageObjectManager(driver);
+    PageObjectManager pageObjectManager = Hooks.getPageObjectManager();
 
     ContactPage contactPage;
 
