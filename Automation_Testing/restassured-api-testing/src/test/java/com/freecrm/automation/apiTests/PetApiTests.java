@@ -143,7 +143,7 @@ public class PetApiTests extends BaseTest{
     @Test(priority = 4, description = "Update pet")
     @Epic("Pet API Tests")
     @Feature("Update Pet")
-    @Story("Update the existing pet's name, status, and tags, then validate the response")
+    @Story("Update the existing pet's name, status, and tags, and validate the response")
     public void testUpdatePet() {
         long PET_ID = (long) getScenarioContext().getContext(Context.PET_ID);
         Pet updatedPet = PetDataBuilder.buildUpdatedPet(PET_ID);
