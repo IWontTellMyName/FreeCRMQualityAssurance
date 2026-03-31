@@ -1,11 +1,10 @@
 package com.freecrm.automation.stepDefinitions.tasks;
 
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
-import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.DashboardPage;
 import com.freecrm.automation.pageObjects.tasks.TasksPage;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,19 +14,13 @@ import org.openqa.selenium.By;
 import java.time.Duration;
 
 public class CreateTask {
-
     DashboardPage dashboardPage;
-    WebDriverManager webDriverManager;
     TasksPage tasksPage;
-    WebDriver driver;
     PageObjectManager pageObjectManager;
 
     @Given("the user clicks on the Tasks tab in the main navigation menu")
     public void the_user_clicks_on_the_tasks_tab_in_the_main_navigation_menu() {
-        webDriverManager = new WebDriverManager();
-        driver = webDriverManager.getDriver();
-        pageObjectManager = new PageObjectManager(driver);
-
+        pageObjectManager = Hooks.getPageObjectManager();
         dashboardPage = pageObjectManager.getDashboardPage();
         dashboardPage.clickTasksIcon();
     }
@@ -55,7 +48,7 @@ public class CreateTask {
     @Then("the task should be created successfully")
     public void the_task_should_be_created_successfully() throws InterruptedException{
         // Validate redirect to task details page
-        String currentUrl = webDriverManager.getDriver().getCurrentUrl();
+        String currentUrl = Hooks.getDriver().getCurrentUrl();
         Assert.assertTrue(currentUrl.contains("/tasks/"));
         Thread.sleep(3000);
     }
@@ -67,7 +60,7 @@ public class CreateTask {
 
     @Then("the created task {string} should be visible in the task list")
     public void the_created_task_should_be_visible_in_the_task_list(String taskName) {
-        WebDriverWait wait = new WebDriverWait(webDriverManager.getDriver(), Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(Hooks.getDriver(), Duration.ofSeconds(15));
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table")));
 

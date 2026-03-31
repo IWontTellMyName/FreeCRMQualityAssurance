@@ -7,7 +7,7 @@ import org.testng.annotations.*;
 
 @CucumberOptions(features = {"src/test/resources/featureFiles/tasks"},
         glue = {"com.freecrm.automation.stepDefinitions.tasks","com.freecrm.automation.hooks"},
-        tags="@TC_Task0",
+        tags="@TC_Task",
         plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
         dryRun = false)
 public class TestRunnerTasks extends AbstractTestNGCucumberTests {

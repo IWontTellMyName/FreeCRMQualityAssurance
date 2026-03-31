@@ -1,5 +1,6 @@
 package com.freecrm.automation.stepDefinitions.tasks;
 
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.DashboardPage;
@@ -16,9 +17,7 @@ public class MandatoryFieldValidation {
 
     @When("the user leaves the task title empty")
     public void the_user_leaves_the_task_title_empty() {
-        webDriverManager = new WebDriverManager();
-        driver = webDriverManager.getDriver();
-        pageObjectManager = new PageObjectManager(driver);
+        pageObjectManager = Hooks.getPageObjectManager();
         tasksPage = pageObjectManager.getTasksPage();
         tasksPage.clickSave();
     }
@@ -35,7 +34,7 @@ public class MandatoryFieldValidation {
     @Then("the task should not be created")
     public void the_task_should_not_be_created() {
 
-        String currentUrl = webDriverManager.getDriver().getCurrentUrl();
+        String currentUrl = Hooks.getDriver().getCurrentUrl();
 
         Assert.assertTrue(currentUrl.contains("/tasks/new"),
                 "Task was created unexpectedly!");

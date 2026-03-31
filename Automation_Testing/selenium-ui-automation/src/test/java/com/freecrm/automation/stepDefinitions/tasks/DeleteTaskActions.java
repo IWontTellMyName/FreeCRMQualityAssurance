@@ -1,5 +1,6 @@
 package com.freecrm.automation.stepDefinitions.tasks;
 
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.tasks.TasksPage;
@@ -16,13 +17,9 @@ public class DeleteTaskActions {
 
     @When("the user clicks on Delete")
     public void the_user_clicks_on_delete() {
-        webDriverManager = new WebDriverManager();
-        driver = webDriverManager.getDriver();
-        pageObjectManager = new PageObjectManager(driver);
-
+        pageObjectManager = Hooks.getPageObjectManager();
 
         tasksPage = pageObjectManager.getTasksPage();
-
         tasksPage.clickDeleteForTask(taskName);
     }
 

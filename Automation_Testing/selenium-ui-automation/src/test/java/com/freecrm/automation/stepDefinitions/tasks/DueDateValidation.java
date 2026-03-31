@@ -1,5 +1,6 @@
 package com.freecrm.automation.stepDefinitions.tasks;
 
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.tasks.TasksPage;
@@ -15,9 +16,7 @@ public class DueDateValidation {
 
     @When("the user enters task title {string}")
     public void the_user_enters_task_title(String string) {
-        webDriverManager = new WebDriverManager();
-        driver = webDriverManager.getDriver();
-        pageObjectManager = new PageObjectManager(driver);
+        pageObjectManager = Hooks.getPageObjectManager();
         tasksPage = pageObjectManager.getTasksPage();
         tasksPage.enter_title(string);
     }
