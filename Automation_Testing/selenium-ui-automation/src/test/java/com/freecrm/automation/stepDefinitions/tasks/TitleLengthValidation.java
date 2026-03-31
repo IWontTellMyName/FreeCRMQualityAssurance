@@ -1,5 +1,6 @@
 package com.freecrm.automation.stepDefinitions.tasks;
 
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.tasks.TasksPage;
@@ -16,9 +17,7 @@ public class TitleLengthValidation {
 
     @When("the user enters a task title of length 260")
     public void the_user_enters_a_task_title_exceeding_250_characters() throws InterruptedException {
-        webDriverManager = new WebDriverManager();
-        driver = webDriverManager.getDriver();
-        pageObjectManager = new PageObjectManager(driver);
+        pageObjectManager = Hooks.getPageObjectManager();
         tasksPage = pageObjectManager.getTasksPage();
 
         StringBuilder sb = new StringBuilder();

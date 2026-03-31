@@ -1,5 +1,6 @@
 package com.freecrm.automation.stepDefinitions.tasks;
 
+import com.freecrm.automation.hooks.Hooks;
 import com.freecrm.automation.managers.PageObjectManager;
 import com.freecrm.automation.managers.WebDriverManager;
 import com.freecrm.automation.pageObjects.DashboardPage;
@@ -16,9 +17,7 @@ public class EditTask {
 
     @Given("the user selects an existing task")
     public void the_user_selects_an_existing_task() throws InterruptedException {
-        webDriverManager = new WebDriverManager();
-        driver = webDriverManager.getDriver();
-        pageObjectManager = new PageObjectManager(driver);
+        pageObjectManager = Hooks.getPageObjectManager();
         tasksPage = pageObjectManager.getTasksPage();
         tasksPage.clickTaskByName("Task");
     }
@@ -26,7 +25,7 @@ public class EditTask {
     @Then("the task details page should be displayed")
     public void the_task_details_page_should_be_displayed() {
         Assert.assertTrue(
-                webDriverManager.getDriver().getCurrentUrl().contains("/tasks/"),
+                Hooks.getDriver().getCurrentUrl().contains("/tasks/"),
                 "Not on task details page"
         );
     }
@@ -49,7 +48,7 @@ public class EditTask {
     @Then("the task should be updated successfully")
     public void the_task_should_be_updated_successfully() {
         Assert.assertTrue(
-                webDriverManager.getDriver().getCurrentUrl().contains("/tasks/"),
+                Hooks.getDriver().getCurrentUrl().contains("/tasks/"),
                 "Update failed"
         );
     }
