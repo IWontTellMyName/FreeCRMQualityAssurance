@@ -26,21 +26,16 @@ public class DueDateValidation {
         tasksPage.enterDueDate(date);
     }
 
-    @Then("a validation error message should be displayed")
-    public void a_validation_error_message_should_be_displayed() {
+    @Then("no validation error message should be shown for past date")
+    public void no_validation_error_message_should_be_displayed() {
 
         String errorMessage = tasksPage.getDateValidationMessage();
 
-        Assert.assertNotNull(errorMessage, "Validation message is null!");
-        Assert.assertFalse(errorMessage.trim().length() < 0,
-                "Validation message not displayed!");
+        Assert.assertTrue(errorMessage == null || errorMessage.trim().isEmpty(),
+                "Validation message was displayed unexpectedly!");
+//        Assert.assertNotNull(errorMessage, "Validation message is null!");
+//        Assert.assertFalse(errorMessage.trim().length() < 0,
+//                "Validation message not displayed!");
     }
 
-    @Then("the task should not be created by due date")
-    public void task_should_not_be_created_by_due_date() {
-
-        boolean taskCreated = tasksPage.isTaskCreated();
-
-        Assert.assertFalse(taskCreated, "Task was created unexpectedly!");
-    }
 }

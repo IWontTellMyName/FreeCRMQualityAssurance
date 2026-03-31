@@ -24,12 +24,14 @@ public class CreateTask {
         dashboardPage = pageObjectManager.getDashboardPage();
         dashboardPage.clickTasksIcon();
     }
+
     @Given("the user clicks the create button to open the task creation form")
     public void the_user_clicks_the_create_button_to_open_the_task_creation_form() {
         tasksPage = pageObjectManager.getTasksPage();
 
         tasksPage.clickCreate();
     }
+
     @Then("the task creation form should be displayed")
     public void the_task_creation_form_should_be_displayed() {
         Assert.assertTrue(tasksPage.isTaskPageLoaded());
@@ -47,7 +49,6 @@ public class CreateTask {
 
     @Then("the task should be created successfully")
     public void the_task_should_be_created_successfully() throws InterruptedException{
-        // Validate redirect to task details page
         String currentUrl = Hooks.getDriver().getCurrentUrl();
         Assert.assertTrue(currentUrl.contains("/tasks/"));
         Thread.sleep(3000);
