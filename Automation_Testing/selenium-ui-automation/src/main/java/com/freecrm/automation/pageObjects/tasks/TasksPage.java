@@ -70,12 +70,12 @@ public class TasksPage {
 
     @FindBy(xpath = "//h3[contains(.,'Task')]")
     WebElement taskHeader;
+
     // Constructor
 
     public TasksPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // ✅ ADD THIS
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
 
@@ -140,17 +140,8 @@ public class TasksPage {
         WebElement task = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//tbody//a[normalize-space()='" + taskName + "']")
         ));
-        // Now clicking the task
         wait.until(ExpectedConditions.elementToBeClickable(task)).click();
     }
-//    public void clickTaskByName(String taskName) {
-//
-//        WebElement task = wait.until(ExpectedConditions.elementToBeClickable(
-//                By.xpath("//tbody//a[normalize-space()='" + taskName + "']")
-//        ));
-//
-//        task.click();
-//    }
 
     public void clickEditButton() {
         WebElement editBtn = wait.until(ExpectedConditions.elementToBeClickable(
@@ -165,15 +156,12 @@ public class TasksPage {
     public void enterTitle(String title) throws InterruptedException {
 
         wait.until(ExpectedConditions.visibilityOf(titleInput));
-
         titleInput.click();
         Thread.sleep(2000);
-        // Select all + delete
         titleInput.sendKeys(Keys.CONTROL + "a");
         Thread.sleep(2000);
         titleInput.sendKeys(Keys.DELETE);
         Thread.sleep(2000);
-        // Enter new title
         titleInput.sendKeys(title);
     }
 
