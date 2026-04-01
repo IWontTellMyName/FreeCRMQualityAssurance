@@ -51,7 +51,6 @@ public class ApiService {
                 .queryParam("status", petStatus.name().toLowerCase())
                 .when()
                 .get(Routes.PET_FIND_BY_STATUS);
-
         return new RestResponse<>(Pet[].class, res);
     }
 
