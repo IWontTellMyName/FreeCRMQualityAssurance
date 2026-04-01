@@ -9,8 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class DueDateValidation {
-    WebDriverManager webDriverManager;
-    WebDriver driver;
     TasksPage tasksPage;
     PageObjectManager pageObjectManager;
 

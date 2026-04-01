@@ -9,16 +9,13 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class DeleteTaskActions {
-    WebDriverManager webDriverManager;
-    WebDriver driver;
     TasksPage tasksPage;
     PageObjectManager pageObjectManager;
-    String taskName = "Task"; // keep simple for now
+    String taskName = "Task";
 
     @When("the user clicks on Delete")
     public void the_user_clicks_on_delete() {
         pageObjectManager = Hooks.getPageObjectManager();
-
         tasksPage = pageObjectManager.getTasksPage();
         tasksPage.clickDeleteForTask(taskName);
     }
