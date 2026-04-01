@@ -252,7 +252,6 @@ public class TasksPage {
     public String getDateValidationMessage() {
 
         try {
-            // Wait briefly for any error message to appear
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 
             WebElement error = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -262,7 +261,7 @@ public class TasksPage {
             return error.getText();
 
         } catch (Exception e) {
-            return ""; // No message found
+            return "";
         }
     }
     public boolean isTaskCreated() {
